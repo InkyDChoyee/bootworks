@@ -1,0 +1,30 @@
+스프링MVC(레거시)-5.x버전 -> 스프링 부트(Spring Boot)
+
+스프링부트 - 3.x 버전
+1. 톰캣 서버(내장) = 안정돼있음
+2. 필수 라이브러리(내장) = pom.xml에 주입할 내용이 별로 없음
+3. 배포 - jar
+
+환경 설정 순서
+1. jdk 17 이상 - 아줄시스템즈: open jdk 17(줄루)
+2. STS4 설치
+3. sts4->인코딩 설정, 글꼴 설정
+4. Web Developer Tool 설치
+   help -> market place -> web developer 검색 -> 두번째꺼 설치
+   window -> enc -> css -> utf-8
+                          html -> utf-8
+                          jsp -> utf-8
+              -> general -> workspace -> utf-8
+Web, Jsp
+
+** 프로젝트 생성
+file -> new -> spring starter project 
+setting 창 -> name -> jwboot
+type -> maven
+jar, 17버전 확인
+group -> com.khit
+package -> com.khit.study
+spring boot version -> 3.1.7
+developer tool => Spring Boot DevTools, Lombok 체크
+template engines -> thymeleaf 체크
+web -> Spring Web 체크
