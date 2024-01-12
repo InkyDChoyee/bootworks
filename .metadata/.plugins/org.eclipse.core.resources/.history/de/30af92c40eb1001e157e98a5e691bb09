@@ -1,0 +1,36 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>BoardList...</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<body>
+	<div class="wrap">
+		<h2>List</h2>
+		<table class="tbl_write">
+			<thead>
+				<tr>
+					<th><input type="text" name="title" placeholder="Title"
+						required></th>
+				</tr>
+				<tr>
+					<th><input type="text" name="writer" placeholder="Writer"
+						required></th>
+				</tr>
+				<tr>
+					<th><textarea rows="5" cols="60" name="content"
+							placeholder="Content" required></textarea></th>
+				</tr>
+				<tr>
+					<th><input type="submit" value="Submit"> <input
+						type="reset" value="Reset"></th>
+				</tr>
+			</thead>
+			<tbody>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardRepositoryTest" project="jwboot" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="com.khit.study.repository.BoardRepositoryTest" time="1.663" displayname="BoardRepositoryTest" uniqueid="[engine:junit-jupiter]/[class:com.khit.study.repository.BoardRepositoryTest]">
+    <testcase name="insertBoard" classname="com.khit.study.repository.BoardRepositoryTest" time="1.663" displayname="insertBoard()" uniqueid="[engine:junit-jupiter]/[class:com.khit.study.repository.BoardRepositoryTest]/[method:insertBoard()]"/>
+  </testsuite>
+</testrun>

@@ -1,0 +1,17 @@
+package com.khit.study.service;
+
+import org.springframework.stereotype.Service;
+
+import com.khit.study.entity.Board;
+
+@Service
+public class BoardService {
+
+	public void save(Board board) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+}
