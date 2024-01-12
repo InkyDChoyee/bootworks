@@ -1,0 +1,10 @@
+package com.khit.study.service;
+
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class BoardService {
+	
+	// 상세보기 메서드
+
+}

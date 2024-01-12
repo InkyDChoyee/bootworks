@@ -1,0 +1,16 @@
+package com.khit.study.service;
+
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+
+import com.khit.study.entity.BoardVO;
+
+@Controller
+public class BoardService {
+	
+
+
+}

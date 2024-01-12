@@ -1,0 +1,15 @@
+package com.khit.study.service;
+
+import org.springframework.stereotype.Controller;
+
+import com.khit.study.entity.BoardVO;
+
+@Controller
+public class BoardService {
+	
+	// 상세보기 메서드
+	public BoardVO getBoard() {
+		
+	}
+
+}
