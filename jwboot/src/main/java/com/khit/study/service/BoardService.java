@@ -25,4 +25,17 @@ public class BoardService {
 		// 내림차순 = sort 클래스 사용
 		return boardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
 	}
+
+	public Board findById(int id) {
+		// 1건 검색 - findById(id).get()
+		return boardRepository.findById(id).get();
+	}
+
+	public void delete(int id) {
+		boardRepository.deleteById(id);
+	}
+
+	public void update(Board board) {
+		boardRepository.save(board);		
+	}
 }

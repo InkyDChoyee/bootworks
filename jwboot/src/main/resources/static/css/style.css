@@ -28,3 +28,7 @@ h1 {
 	width: 580px;
 	height: 300px;
 }
+
+a {
+	text-decoration: none;
+}

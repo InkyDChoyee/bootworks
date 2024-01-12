@@ -13,7 +13,7 @@
 		<img src="/static/images/newyear.jpg" alt="banner">
 		<div> 
 			<a href="/board/write">Write</a>&nbsp;&nbsp;
-			<a href="/board">List</a>
+			<a href="/board/">List</a>
 		</div>
 	</div>
 </body>

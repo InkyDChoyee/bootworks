@@ -32,6 +32,7 @@
 						<td>
 							<input type="submit" value="Submit">
 							<input type="reset" value="Reset">
+							<a href="/board/"><button type="button">Cancel</button></a>
 						</td>
 					</tr>
 				</tbody>
