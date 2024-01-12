@@ -10,8 +10,8 @@ import com.khit.study.entity.BoardVO;
 
 @Controller
 public class BoardService {
-	
 	// 상세보기 메서드
+	
 	public BoardVO getBoard() {
 		// 게시글 1건 생성
 		BoardVO board = new BoardVO();
@@ -36,5 +36,4 @@ public class BoardService {
 		}
 		return boardList;
 	}
-
 }

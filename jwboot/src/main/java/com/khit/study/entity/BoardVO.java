@@ -5,9 +5,8 @@ package com.khit.study.entity;
 import java.util.Date;
 
 import lombok.Data;
-import lombok.ToString;
 
-@ToString
+
 @Data
 public class BoardVO {
 	private int id;
