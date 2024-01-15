@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><testrun name="BoardRepositoryTest" project="jwboot" tests="4" started="4" failures="0" errors="0" ignored="0">
-  <testsuite name="com.khit.study.repository.BoardRepositoryTest" time="2.652" displayname="BoardRepositoryTest" uniqueid="[engine:junit-jupiter]/[class:com.khit.study.repository.BoardRepositoryTest]">
-    <testcase name="getBoardList" classname="com.khit.study.repository.BoardRepositoryTest" time="2.579" displayname="getBoardList()" uniqueid="[engine:junit-jupiter]/[class:com.khit.study.repository.BoardRepositoryTest]/[method:getBoardList()]"/>
-    <testcase name="updateBoard" classname="com.khit.study.repository.BoardRepositoryTest" time="0.008" displayname="updateBoard()" uniqueid="[engine:junit-jupiter]/[class:com.khit.study.repository.BoardRepositoryTest]/[method:updateBoard()]"/>
-    <testcase name="insertBoard" classname="com.khit.study.repository.BoardRepositoryTest" time="0.037" displayname="insertBoard()" uniqueid="[engine:junit-jupiter]/[class:com.khit.study.repository.BoardRepositoryTest]/[method:insertBoard()]"/>
-    <testcase name="getBoard" classname="com.khit.study.repository.BoardRepositoryTest" time="0.005" displayname="getBoard()" uniqueid="[engine:junit-jupiter]/[class:com.khit.study.repository.BoardRepositoryTest]/[method:getBoard()]"/>
-  </testsuite>
-</testrun>
