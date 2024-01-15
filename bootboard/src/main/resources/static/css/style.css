@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+#container {
+	margin: 0 auto;
+	width: 100%;
+}
+ul li {
+	list-style: none;
+	margin: 16px;
+}
+
+.h2 {
+	text-align: center;
+	color: #99f;
+}
+
+input[type="submit"], input[type="reset"], a, button:hover {
+	cursor: pointer;
+}
+
+/* index style */
+.main_img {
+	text-align: center;
+}
+
+.index_img{
+	margin-top: 50px;
+	height: 500px;
+}
+
+.menu {
+	text-align: center;
+}
+
+/* join style */
+.form_join {
+	width: 450px;
+	margin: 0 auto;
+}
+
+.fs_join {
+	padding-top: 20px;
+}
+
+.form_join label {
+	width: 100px;
+	float: left;
+}
+
+.joinBtn {
+	margin: 50px 20px 20px;
+	display: flex;
+	justify-content: space-around;
+}
+
+.form_join input {
+	width: 200px;
+	padding: 4px;
+}
+
+.joinBtn input {
+	width: 70px;
+}
+
+.joinBtn input[type="submit"]{
+	background: #99f;
+	border: 1px solid #99f;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #77d;
+}
+.joinBtn input[type="reset"]{
+	background: #f99;
+	border: 1px solid #f99;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #d77;
+}
+
+.btn_home {
+	width: 70px;
+	padding: 4px;
+	background: #9f9;
+	border: 1px solid #9f9;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #7d7;
+}

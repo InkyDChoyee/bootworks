@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>JOIN</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2 class="h2">Join</h2>
+		<form th:action="@{/member/join}" method="post" class="form_join">
+			<fieldset class="fs_join">
+				<ul>
+					<li><label for="memberEmail">Email</label> <input type="text"
+						name="memberEmail" id="memberEmail" placeholder="email"></li>
+					<li><label for="memberPassword">Password</label> <input
+						type="password" name="memberPassword" id="memberPassword"
+						placeholder="password"></li>
+					<li><label for="memberName">Name</label> <input type="text"
+						name="memberName" id="memberName" placeholder="name"></li>
+					<li><label for="memberAge">Age</label> <input type="text"
+						name="memberAge" id="memberAge" placeholder="age"></li>
+				</ul>
+				<div class="joinBtn">
+					<input type="submit" value="SignUp"> 
+					<a th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+					<input type="reset" value="Cancel"> 
+				</div>
+			</fieldset>
+		</form>
+	</div>
+</body>
+</html>
