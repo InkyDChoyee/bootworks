@@ -1,5 +1,7 @@
 package com.khit.board.dto;
 
+import com.khit.board.entity.Member;
+
 import lombok.Data;
 
 @Data
@@ -10,6 +12,16 @@ public class MemberDTO {
 	private String memberName;
 	private int memberAge;
 	
-	
+	// entity -> dto 변환 메서드
+	// entity를 매개로 받아서 dto에 저장
+	public static MemberDTO toSaveDTO(Member member) {
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setId(member.getId());
+		memberDTO.setMemberEmail(member.getMemberEmail());
+		memberDTO.setMemberPassword(member.getMemberPassword());
+		memberDTO.setMemberName(member.getMemberName());
+		memberDTO.setMemberAge(member.getMemberAge());
+		return memberDTO;
+	}
 	
 }

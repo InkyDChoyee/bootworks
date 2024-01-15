@@ -12,4 +12,9 @@ public class HomeController {
 //	}
 	// thymeleaf에서는 index 매핑을 굳이 해주지 않아도 된다
 	
+	@GetMapping("/main")
+	public String main() {
+		return "main";
+	}
+	
 }

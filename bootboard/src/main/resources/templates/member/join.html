@@ -21,12 +21,16 @@
 					<li><label for="memberAge">Age</label> <input type="text"
 						name="memberAge" id="memberAge" placeholder="age"></li>
 				</ul>
-				<div class="joinBtn">
-					<input type="submit" value="SignUp"> 
-					<a th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
-					<input type="reset" value="Cancel"> 
-				</div>
 			</fieldset>
+			<div class="joinBtn">
+				<div class="join_btn">
+					<input type="submit" value="SignUp"> 
+				</div>
+				<div class="other_btn">
+					<a th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+					<input id="other_btn_reset" type="reset" value="Cancel"> 
+				</div>
+			</div>
 		</form>
 	</div>
 </body>

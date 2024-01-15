@@ -2,14 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>JOIN</title>
+<title>LOGIN</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div id="container">
-		<h2 class="h2">Join</h2>
-		<form th:action="@{/member/join}" method="post" class="form_join">
-			<fieldset>
+		<h2 class="h2">Login</h2>
+		<form th:action="@{/member/login}" method="post" class="form_login">
+			<fieldset class="fs_login">
 				<ul>
 					<li>
 						<label for="memberEmail">Email</label>
@@ -22,22 +22,19 @@
 						       placeholder="password">
 					</li>
 					<li>
-						<label for="memberName">Name</label>
-						<input type="text" name="memberName" id="memberName"
-						       placeholder="name">
-					</li>
-					<li>
-						<label for="memberAge">Age</label>
-						<input type="text" name="memberAge" id="memberAge"
-						       placeholder="age">
-					</li>
-					<li>
-						<input type="submit" value="SignUp">
-						<input type="reset" value="Cancel">
-						<a th:href="@{}"></a>
+						<span th:text="${error}" class="error"></span>
 					</li>
 				</ul>
 			</fieldset>
+			<div class="loginBtn">
+				<div class="login_btn">
+					<input type="submit" value="Login"> 
+				</div>
+				<div class="login_other_btn">
+					<a th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+					<input type="reset" value="Cancel"> 
+				</div>
+			</div>
 		</form>
 	</div>
 </body>

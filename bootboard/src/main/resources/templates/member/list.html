@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>LIST</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2 class="h2">List</h2>
+		<table class="tbl_list">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>Email</th>
+					<th>Password</th>
+					<th>Name</th>
+					<th>Age</th>
+					<th>Inquiry / Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="member: ${memberList}">
+					<td th:text="${member.id}"></td>
+					<td th:text="${member.memberEmail}"></td>
+					<td th:text="${member.memberPassword}"></td>
+					<td th:text="${member.memberName}"></td>
+					<td th:text="${member.memberAge}"></td>
+					<td>
+						<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
+						<a th:href="@{|/member/${member.id}|}" class="inquiry">Detail</a> / 
+						<a th:href="@{|/member/delete/${member.id}|}" class="delete"
+						onclick="return confirm('해당 회원을 삭제하시겠습니까?')">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="listBtn">
+			<a th:href="@{/member/join}"><button class="idx_btn_join">Join</button></a>
+			<a th:if="${session.sessionEmail}" th:href="@{/main}"><button class="btn_home" type="button">Home</button></a>
+			<a th:unless="${session.sessionEmail}" th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+		</div>
+	</div>
+</body>
+</html>

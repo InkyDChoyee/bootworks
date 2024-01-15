@@ -1,5 +1,9 @@
 package com.khit.board.service;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.khit.board.dto.MemberDTO;
@@ -20,6 +24,72 @@ public class MemberService {
 		// dto를 entity로 변환해야 함 = 변환 메서드 필요
 		Member member = Member.toSaveEntity(memberDTO);
 		
+		memberRepository.save(member);
+	}
+
+	public List<MemberDTO> findAll() {
+		// db에서 MemberEntity를 
+		List<Member> memberList = memberRepository.findAll();
+		// 변환 메서드 필요
+		// member를 담을 빈 dto 리스트를 생성
+		List<MemberDTO> memberDTOList = new ArrayList<>();
+		
+		for(Member member : memberList) {
+			MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
+			memberDTOList.add(memberDTO);
+		}
+		// 꺼내와서 controller에 DTO로 보냄
+		
+		
+		return memberDTOList;
+	}
+
+	public MemberDTO findById(Long id) {
+		// db에서 member 1개 꺼내오기
+		Member member = memberRepository.findById(id).get();
+		// entity -> dto 변환
+		MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
+		return memberDTO;
+	}
+
+	public void deleteById(Long id) {
+		memberRepository.deleteById(id);
+	}
+
+	public MemberDTO login(MemberDTO memberDTO) {  // 외부에서 요청한 DTO
+		// 1. email로 회원 조회(이메일과 비밀번호를 비교)
+		Optional<Member> memberEmail = // memberEmail을 포함한 member 객체를 의미
+		memberRepository.findByMemberEmail(memberDTO.getMemberEmail());
+		if(memberEmail.isPresent()) {
+			// 조회 결과 있음 - 1건 가져옴
+			Member member = memberEmail.get();
+			// 이메일을 가져와서 비밀번호 일치 여부 확인
+			if(member.getMemberPassword().equals(memberDTO.getMemberPassword())) {
+				// entity -> dto로 변환
+				// 바꿔서 보낼 dto
+				MemberDTO dto = MemberDTO.toSaveDTO(member);
+				return dto;
+			}else {
+				return null;
+			}
+		}else {
+			return null;
+		}
+		
+	}
+
+	public MemberDTO findByEmail(String email) {
+		// db에서 이메일로 검색한 회원 객체 가져오고
+		Member member = memberRepository.findByMemberEmail(email).get();
+		// 회원 객체를(entity)를 dto로 변환
+		MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
+		return memberDTO;
+	}
+
+	public void update(MemberDTO memberDTO) {
+		// save가 가입, 수정 되는데 가입할 때는 id가 없고, 수정할때는 id가 있음
+		Member member = Member.toUpdateEntity(memberDTO);
+		// id가 있는 엔티티의 메서드 필요함
 		memberRepository.save(member);
 	}
 	
