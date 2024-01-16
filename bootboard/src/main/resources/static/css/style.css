@@ -173,7 +173,6 @@ a:hover, button:hover {
 
 .btn_home:active {
 	box-shadow: inset 2px 2px 5px #4a4;
-	
 }
 
 /* memberlist style */
@@ -229,10 +228,6 @@ a:hover, button:hover {
 	color: #f99;
 	text-shadow: 2px 2px 5px #f99;
 }
-
-
-
-
 
 /* detail style */
 .detail {
@@ -376,3 +371,62 @@ a:hover, button:hover {
 	padding: 4px;
 }
 
+.updateBtn {
+	display: flex;
+	justify-content: space-around;
+	margin: 70px auto;
+	padding: 40px 0;
+	border-top: 1px solid #ccc;
+}
+.other_update_btn {
+	display: flex;
+	flex-direction: column;
+}
+
+.updateBtn .btn_submit{
+	width: 150px;
+	padding: 20px;
+	background: #99f;
+	color: #fff;
+	font-size: 1.2rem;
+	border: 1px solid #77d;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #77d;
+}
+.updateBtn .btn_reset{
+	width: 70px;
+	padding: 4px;
+	margin: 10px;
+	background: #fff;
+	border: 1px solid #d77;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #d77;
+}
+
+.updateBtn .btn_submit:hover, 
+.updateBtn .btn_reset:hover,
+.updateBtn #btn_back:hover {
+	box-shadow:0 0 0;
+}
+
+.updateBtn .btn_submit:active {
+	box-shadow: inset 2px 2px 5px #44a;
+}
+
+.updateBtn .btn_reset:active {
+	box-shadow: inset 2px 2px 5px #a44;
+}
+
+#btn_back {
+	width: 70px;
+	padding: 4px;
+	margin: 10px;
+	background: #fff;
+	border: 1px solid #7a7;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #7d7;
+}
+
+.other_update_btn #btn_back:active {
+	box-shadow: inset 2px 2px 5px #4a4;
+}

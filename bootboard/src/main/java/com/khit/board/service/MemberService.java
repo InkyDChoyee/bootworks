@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.khit.board.dto.MemberDTO;
 import com.khit.board.entity.Member;
+import com.khit.board.exception.BootBoardException;
 import com.khit.board.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -46,10 +47,17 @@ public class MemberService {
 
 	public MemberDTO findById(Long id) {
 		// db에서 member 1개 꺼내오기
-		Member member = memberRepository.findById(id).get();
-		// entity -> dto 변환
-		MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
-		return memberDTO;
+//		Member member = memberRepository.findById(id).get();
+		// id가 없을 때 오류 처리 - "url을 찾을 수 없습니다"
+		Optional<Member> member = memberRepository.findById(id);
+		if(member.isPresent()) {
+			// entity -> dto 변환
+//			MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
+			MemberDTO memberDTO = MemberDTO.toSaveDTO(member.get());
+			return memberDTO;
+		}else {
+			throw new BootBoardException("찾는 데이터가 없습니다");
+		}
 	}
 
 	public void deleteById(Long id) {
@@ -92,6 +100,15 @@ public class MemberService {
 		// id가 있는 엔티티의 메서드 필요함
 		memberRepository.save(member);
 	}
-	
-	
+
+	public String checkEmail(String memberEmail) {
+		// db에 있는 email 조회 -> 있으면 "OK", 없으면 "NO" 문자열 반환
+		Optional<Member> findMember = memberRepository.findByMemberEmail(memberEmail);
+		// findMember = email이 들어있는 객체
+		if(findMember.isEmpty()) { // 찾는 email이 없으면 가입 가능
+			return "OK";
+		}else {  // 찾는 email이 있으면 가입 불가능
+			return "NO";
+		}
+	}
 }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khit.board.dto.MemberDTO;
 import com.khit.board.entity.Member;
@@ -104,6 +105,12 @@ public class MemberController {
 	public String update(MemberDTO memberDTO) {
 		memberService.update(memberDTO);
 		return "redirect:/member/" + memberDTO.getId();
+	}
+	
+	@PostMapping("/member/check-email")
+	public @ResponseBody String checkEmail(@RequestParam("memberEmail") String memberEmail) {
+		String resultText = memberService.checkEmail(memberEmail);
+		return resultText;
 	}
 	
 }

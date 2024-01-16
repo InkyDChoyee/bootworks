@@ -22,12 +22,14 @@
 						<li><label for="memberAge">Age</label> <input type="text"
 							name="memberAge" id="memberAge"  th:value="${member.memberAge}"></li>
 					</ul>
-					<div class="updateBtn">
-						<button class="btn_submit" type="submit">Update</button>
-						<button class="btn_reset" type="reset">Cancel</button>
-					 	<a th:href="@{/member/list}"><button class="btn_back" type="button">List</button></a>
-					</div>
 				</fieldset>
+				<div class="updateBtn">
+					<button class="btn_submit" type="submit">Update</button>
+				 	<div class="other_update_btn">
+				 		<a th:href="@{/main}"><button id="btn_back" type="button">Main</button></a>
+						<button class="btn_reset" type="reset">Cancel</button>
+					</div>
+				</div>
 			</form>
 		</div>
 	</div>
