@@ -22,6 +22,7 @@ public class BoardController {
 	
 	private final BoardService boardService;
 	
+	// 글쓰기
 	@GetMapping("/write")
 	public String writeForm() {
 		return "/board/write";   // write.html
@@ -31,7 +32,7 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(@ModelAttribute BoardDTO boardDTO) {
 		boardService.save(boardDTO);
-		return "redirect:/";
+		return "redirect:/board/list";
 	}
 	
 	// 글 목록
@@ -45,9 +46,36 @@ public class BoardController {
 	// 글 상세보기
 	@GetMapping("/{id}")
 	public String getBoard(@PathVariable Long id, Model model) {
+		// 조회수
+		boardService.updateHits(id);
+		
+		// 글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
 		return "/board/detail";
 	}
 	
+	// 글 삭제하기
+	@GetMapping("/delete/{id}")
+	public String deleteBoard(@PathVariable Long id) {
+		boardService.deleteById(id);
+		return "redirect:/board/list";
+	}
+	
+	// 글 수정하기
+	@GetMapping("/update/{id}")
+	public String updateForm(@PathVariable Long id, Model model) {
+		// 수정할 해당 페이지 가져오기
+		BoardDTO boardDTO = boardService.findById(id);
+		model.addAttribute("board", boardDTO);
+		return "/board/update";
+	}
+	
+	// 글 수정 처리
+	@PostMapping("/update/{id}")
+	public String update(@ModelAttribute BoardDTO boardDTO) {
+		// 수정후에 글 상세보기로 이동
+		boardService.update(boardDTO);
+		return "redirect:/board/" + boardDTO.getId();
+	}
 }

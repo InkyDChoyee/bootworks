@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
@@ -49,5 +50,21 @@ public class BoardService {
 		}else {   // 게시글이 없으면 에러 처리
 			throw new BootBoardException("게시글을 찾을 수 없습니다");
 		}
+	}
+
+	@Transactional  // 컨트롤러 작업(메서드)이 2개 이상이면 사용함
+	public void updateHits(Long id) {
+		// updateHits() => boardRepository에 메서드 생성
+		boardRepository.updateHits(id);
+	}
+
+	public void deleteById(Long id) {
+		boardRepository.deleteById(id);
+	}
+
+	public void update(BoardDTO boardDTO) {
+		// save() = 삽입(id가 없는 경우), 수정(id가 있는 경우)로 나뉨
+		Board board= Board.toUpdateEntity(boardDTO);
+		boardRepository.save(board);
 	}
 }

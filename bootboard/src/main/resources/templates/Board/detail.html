@@ -17,27 +17,34 @@
 					</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="boardWriter"
-						th:value="${board.boardWriter}" readonly></td>
-				</tr>
-				<tr>
 					<td><textarea rows="5" cols="50" name="boardContent"
 							th:text="${board.boardContent}" readonly></textarea></td>
 				</tr>
+				<tr>
+					<td>
+						<div class="board_info">
+							<p th:text="'hits: ' + ${board.boardHits}"></p>
+							<p th:text="'writer: ' + ${board.boardWriter}"></p>
+							<p th:text="'date: ' + ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+						</div>
+					</td>
+				</tr>
 			</tbody>
 		</table>
-		<div class="board_info">
-			<p th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
-			<p th:text="${board.boardHits}"></p>
-		</div>
 		<div class="writeBtn">
-			<input class="write_btn" type="submit" value="Write"> 
+			<!-- <input class="write_btn" type="submit" value="Write">  -->
 			<div class="other_writeBtn">
 				<a th:if="${session.sessionEmail}" th:href="@{/main}"><button class="btn_home" type="button">Home</button></a>
 				<a th:unless="${session.sessionEmail}" th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+				<a th:if="${session.sessionName == board.boardWriter}" th:href="@{|/board/update/${board.id}|}">
+					<button class="btn_home">Update</button>
+				</a>
+				<a th:if="${session.sessionName == board.boardWriter}" th:href="@{|/board/delete/${board.id}|}">
+					<button class="write_cancel_btn" onclick="return confirm('해당 게시글을 삭제하시겠습니까?')">Delete</button>
+				</a>
 				<a th:href="@{/board/list}"><button
-						class="btn_home" type="button">List</button></a>
-				<input class="write_cancel_btn" type="reset" value="Cancel">
+						class="write_cancel_btn" type="button">List</button></a>
+				<!-- <input class="write_cancel_btn" type="reset" value="Cancel"> -->
 			</div>
 		</div>
 	</div>

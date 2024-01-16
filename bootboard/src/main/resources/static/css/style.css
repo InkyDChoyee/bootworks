@@ -183,7 +183,7 @@ a:hover, button:hover {
 	border-radius: 10px;
   	border-collapse: separate;
   	border-spacing: 0;
-  	box-shadow: 2px 2px 5px #ee7;
+  	box-shadow: 2px 2px 7px #ee7;
 }
 
 .tbl_list th {
@@ -197,6 +197,7 @@ a:hover, button:hover {
 .tbl_list td {
 	border-top: 1px solid #ff9;
 	padding: 8px;
+	text-shadow:  -1px -1px 2px #ccc; 
 }
 
 .listBtn {
@@ -469,6 +470,7 @@ a:hover, button:hover {
 
 .writeBtn .write_btn{
 	width: 150px;
+	height: 100px;
 	padding: 20px;
 	background: #99f;
 	color: #fff;
@@ -502,15 +504,31 @@ a:hover, button:hover {
 }
 
 .writeBtn {
-	width: 600px;
-	margin: 50px auto;
-	padding: 30px;
+	width: 650px;
+	margin: 30px auto;
+	padding-top: 20px;
 	border-top: 1px solid #ccc;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.other_writeBtn {
+	width: 600px;
+	display:flex;
+	justify-content: right;
+}
+
+/* board_detal style */
+.board_info {
+	margin: 0 auto;
+	width: 600px;
 	display: flex;
 	justify-content: space-around;
 }
 
-.other_writeBtn {
-	display:flex;
+/* update style */
+.other_updateBtn {
+	display: flex;
 	flex-direction: column;
 }

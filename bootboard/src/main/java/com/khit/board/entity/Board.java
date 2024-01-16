@@ -43,4 +43,15 @@ public class Board extends BaseEntity{
 				                     .build();
 		return board;
 	}
+	
+	// dto->entity 정적 메서드 정의
+	public static Board toUpdateEntity(BoardDTO boardDTO) {
+		Board board = Board.builder().id(Long.valueOf(boardDTO.getId()))
+									 .boardTitle(boardDTO.getBoardTitle())
+									 .boardWriter(boardDTO.getBoardWriter())
+									 .boardContent(boardDTO.getBoardContent())
+									 .boardHits(boardDTO.getBoardHits())
+									 .build();
+		return board;
+	}
 }
