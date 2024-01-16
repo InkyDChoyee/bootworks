@@ -76,6 +76,7 @@ public class MemberController {
 		if(loginMember != null) {
 			// 세션 발급 = 로그인
 			session.setAttribute("sessionEmail", loginMember.getMemberEmail());
+			session.setAttribute("sessionName", loginMember.getMemberName());
 			return "main";
 		}else {
 			String error = "아이디나 비밀번호를 확인해 주세요";

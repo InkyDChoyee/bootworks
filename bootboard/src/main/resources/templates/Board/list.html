@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>BOARD</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2 class="h2">Board</h2>
+		<table class="tbl_list">
+			<thead>
+				<tr>
+					<th>No</th>
+					<th>Title</th>
+					<th>Writer</th>
+					<th>Date</th>
+					<th>Hits</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+ 				<tr th:each="board: ${boardList}">
+					<td th:text="${board.id}"></td>
+					<td><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></td>
+					<td th:text="${board.boardWriter}"></td>
+					<td th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+					<td th:text="${board.boardHits}"></td>
+					<td>
+						<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
+						<a th:href="@{|/board/delete/${board.id}|}" class="delete"
+						onclick="return confirm('해당 게시글을 삭제하시겠습니까?')">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="listBtn">
+			<a th:href="@{/board/write}"><button class="idx_btn_join">Write</button></a>
+			<a th:if="${session.sessionEmail}" th:href="@{/main}"><button class="btn_home" type="button">Home</button></a>
+			<a th:unless="${session.sessionEmail}" th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+		</div>
+	</div>
+</body>
+</html>

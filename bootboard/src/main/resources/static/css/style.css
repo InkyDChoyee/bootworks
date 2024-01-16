@@ -430,3 +430,87 @@ a:hover, button:hover {
 .other_update_btn #btn_back:active {
 	box-shadow: inset 2px 2px 5px #4a4;
 }
+
+/* write style */
+.tbl_write {
+	width: 700px;
+	margin: 0 auto;
+	border: 1px solid #ff9;
+	border-radius: 10px;
+  	border-collapse: separate;
+  	border-spacing: 0;
+  	box-shadow: 2px 2px 5px #ee7;
+}
+
+.tbl_write th {
+	border-bottom: 1px solid #ff9;
+	border-radius: 5px;
+	padding: 8px;
+	/* background: #ffd; */
+	text-shadow: 2px 2px 5px #999;
+}
+
+.tbl_write td {
+	border-top: 1px solid #ff9;
+	padding: 8px;
+}
+.tbl_write input {
+	width: 662px;
+	padding: 10px;
+	border: none;
+}
+
+.tbl_write textarea {
+	width: 670px;
+	height: 300px;
+	border: none;
+	resize: none;
+}
+
+.writeBtn .write_btn{
+	width: 150px;
+	padding: 20px;
+	background: #99f;
+	color: #fff;
+	font-size: 1.2rem;
+	border: 1px solid #77d;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #77d;
+}
+.writeBtn .write_cancel_btn{
+	width: 70px;
+	height: 25px;
+	padding: 4px;
+	margin: 10px;
+	background: #fff;
+	border: 1px solid #d77;
+	border-radius: 5px;
+	box-shadow: 2px 2px 5px #d77;
+}
+
+.writeBtn .write_btn:hover, 
+.writeBtn .write_cancel_btn:hover {
+	box-shadow:0 0 0;
+}
+
+.writeBtn .write_btn:active {
+	box-shadow: inset 2px 2px 5px #44a;
+}
+
+.writeBtn .write_cancel_btn:active {
+	box-shadow: inset 2px 2px 5px #a44;
+}
+
+.writeBtn {
+	width: 600px;
+	margin: 50px auto;
+	padding: 30px;
+	border-top: 1px solid #ccc;
+	display: flex;
+	justify-content: space-around;
+}
+
+.other_writeBtn {
+	display:flex;
+	flex-direction: column;
+}
