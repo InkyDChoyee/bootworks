@@ -80,5 +80,10 @@ public class BoardRepositoryTest {
 	public void deleteBoard() {
 //		boardRepository.deleteById(3);
 	}
+	
+	@Test
+	public void testFindByTitleContainig() {
+		//List<Board> boardList = boardRepository
+	}
 
 }

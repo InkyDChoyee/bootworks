@@ -9,11 +9,17 @@
 <body>
 	<div id="container">
 		<h2>Write</h2>
-		<form th:action="@{/board/write}" method="post" class="form_write">
-			<table class="tbl_write">
+		<form th:action="@{/board/write}" th:object="${boardDTO}" method="post" class="form_write">
+
+ 			<input type="hidden" name="boardEmail" th:value="${session.sessionEmail}">
+ 			<table class="tbl_write">
 				<tbody>
+					<!-- th:field="*{boardTitle} name 속성 역할도 하고 제목을 유지시키는 기능도 함 -->
 					<tr>
-						<td><input type="text" name="boardTitle" placeholder="title" required>
+						<td><input type="text" th:field="*{boardTitle}" placeholder="title">
+				 			<div th:if="${#fields.hasAnyErrors()}" class="any_danger">
+			 					<div th:each="err:${#fields.allErrors()}" th:text="${err}" class="danger_title"></div>
+			 				</div>
 						</td>
 					</tr>
 					<tr>
@@ -21,8 +27,11 @@
 							th:value="${session.sessionName}" readonly></td>
 					</tr>
 					<tr>
-						<td><textarea rows="5" cols="50" name="boardContent"
-								placeholder="content" required></textarea></td>
+						<td><textarea rows="5" cols="50" th:field="*{boardContent}"
+								placeholder="content"></textarea>
+								 			<div th:if="${#fields.hasAnyErrors()}" class="any_danger">
+ 				<div th:each="err:${#fields.allErrors()}" th:text="${err}" class="danger_content"></div>
+ 			</div></td>
 					</tr>
 				</tbody>
 			</table>
@@ -39,4 +48,19 @@
 		</form>
 	</div>
 </body>
+<script>
+    var remainTitle = document.querySelectorAll('.danger_title');
+    remainTitle.forEach(function(element) {
+        if (element.innerHTML.trim() === "내용은 필수 항목입니다") {
+        	element.innerHTML="";
+        }
+    });
+    
+    var remainContent = document.querySelectorAll('.danger_content');
+    remainContent.forEach(function(element) {
+        if (element.innerHTML.trim() === "제목은 필수 항목입니다") {
+        	element.innerHTML="";
+        }
+    });
+</script>
 </html>

@@ -25,7 +25,8 @@
 						<div class="board_info">
 							<p th:text="'hits: ' + ${board.boardHits}"></p>
 							<p th:text="'writer: ' + ${board.boardWriter}"></p>
-							<p th:text="'date: ' + ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+							<p th:if="${board.updatedDate != empty}" th:text="'date: ' + ${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:ss')} + ' (updated)'"></p>
+							<p th:unless="${board.updatedDate != empty}" th:text="'date: ' + ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')} + ' (created)'"></p>
 						</div>
 					</td>
 				</tr>
@@ -36,10 +37,10 @@
 			<div class="other_writeBtn">
 				<a th:if="${session.sessionEmail}" th:href="@{/main}"><button class="btn_home" type="button">Home</button></a>
 				<a th:unless="${session.sessionEmail}" th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
-				<a th:if="${session.sessionName == board.boardWriter}" th:href="@{|/board/update/${board.id}|}">
+				<a th:if="${session.sessionEmail == board.boardEmail}" th:href="@{|/board/update/${board.id}|}">
 					<button class="btn_home">Update</button>
 				</a>
-				<a th:if="${session.sessionName == board.boardWriter}" th:href="@{|/board/delete/${board.id}|}">
+				<a th:if="${session.sessionEmail == board.boardEmail}" th:href="@{|/board/delete/${board.id}|}">
 					<button class="write_cancel_btn" onclick="return confirm('해당 게시글을 삭제하시겠습니까?')">Delete</button>
 				</a>
 				<a th:href="@{/board/list}"><button
