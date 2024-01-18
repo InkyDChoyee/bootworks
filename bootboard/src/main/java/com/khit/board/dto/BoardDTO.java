@@ -27,7 +27,7 @@ public class BoardDTO {
 	@Size(max = 30)
 	private String boardWriter;
 	
-	private String boardEmail;
+//	private String boardEmail;
 
 	@Size(max = 255)
 	@NotEmpty(message = "내용은 필수 항목입니다")
@@ -43,7 +43,6 @@ public class BoardDTO {
 		BoardDTO boardDTO = BoardDTO.builder().id(board.getId())
 				                              .boardTitle(board.getBoardTitle())
 				                              .boardWriter(board.getBoardWriter())
-				                              .boardEmail(board.getBoardEmail())
 				                              .boardContent(board.getBoardContent())
 				                              .boardHits(board.getBoardHits())
 				                              .createdDate(board.getCreatedDate())

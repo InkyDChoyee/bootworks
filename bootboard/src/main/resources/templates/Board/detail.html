@@ -37,13 +37,13 @@
 			<div class="other_writeBtn">
 				<a th:if="${session.sessionEmail}" th:href="@{/main}"><button class="btn_home" type="button">Home</button></a>
 				<a th:unless="${session.sessionEmail}" th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
-				<a th:if="${session.sessionEmail == board.boardEmail}" th:href="@{|/board/update/${board.id}|}">
+				<a th:if="${session.sessionName == board.boardWriter}" th:href="@{|/board/update/${board.id}|}">
 					<button class="btn_home">Update</button>
 				</a>
-				<a th:if="${session.sessionEmail == board.boardEmail}" th:href="@{|/board/delete/${board.id}|}">
+				<a th:if="${session.sessionName == board.boardWriter}" th:href="@{|/board/delete/${board.id}|}">
 					<button class="write_cancel_btn" onclick="return confirm('해당 게시글을 삭제하시겠습니까?')">Delete</button>
 				</a>
-				<a th:href="@{/board/list}"><button
+				<a th:href="@{/board/pagelist}"><button
 						class="write_cancel_btn" type="button">List</button></a>
 				<!-- <input class="write_cancel_btn" type="reset" value="Cancel"> -->
 			</div>

@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +17,9 @@ import com.khit.board.exception.BootBoardException;
 import com.khit.board.repository.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class BoardService {
@@ -69,5 +74,30 @@ public class BoardService {
 		// save() = 삽입(id가 없는 경우), 수정(id가 있는 경우)로 나뉨
 		Board board= Board.toUpdateEntity(boardDTO);
 		boardRepository.save(board);
+	}
+
+	public Page<BoardDTO> findListAll(Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;  // db가 1 작음
+		int pageSize = 10;
+		
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findAll(pageable);
+
+		log.info("" + boardList.isFirst());  // 속성으로 나가면 .first로 작동함
+		log.info("" + boardList.isLast());  // 속성으로 나가면 .last로 작동함
+		
+		// 생성자 방식으로 boardDTOList를 만들어 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board -> new BoardDTO(
+																	board.getId(),
+																	board.getBoardTitle(),
+																	board.getBoardWriter(),
+																	board.getBoardContent(),
+																	board.getBoardHits(),
+																	board.getCreatedDate(),
+																	board.getUpdatedDate()));
+		
+		return boardDTOList;
+		
 	}
 }

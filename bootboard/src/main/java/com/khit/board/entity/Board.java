@@ -29,8 +29,8 @@ public class Board extends BaseEntity{
 	private String boardTitle;
 	@Column(length=30, nullable=false)
 	private String boardWriter;
-	@Column(nullable=false)
-	private String boardEmail;
+//	@Column(nullable=false)
+//	private String boardEmail;
 	@Column(nullable=false)
 	private String boardContent;
 	@Column
@@ -40,7 +40,6 @@ public class Board extends BaseEntity{
 	public static Board toSaveEntity(BoardDTO boardDTO) {
 		Board board = Board.builder().boardTitle(boardDTO.getBoardTitle())
 				                     .boardWriter(boardDTO.getBoardWriter())
-				                     .boardEmail(boardDTO.getBoardEmail())
 				                     .boardContent(boardDTO.getBoardContent())
 				                     .boardHits(0)
 				                     .build();
@@ -52,7 +51,6 @@ public class Board extends BaseEntity{
 		Board board = Board.builder().id(Long.valueOf(boardDTO.getId()))
 									 .boardTitle(boardDTO.getBoardTitle())
 									 .boardWriter(boardDTO.getBoardWriter())
-									 .boardEmail(boardDTO.getBoardEmail())
 									 .boardContent(boardDTO.getBoardContent())
 									 .boardHits(boardDTO.getBoardHits())
 									 .build();

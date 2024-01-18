@@ -11,7 +11,7 @@
 		<h2>Write</h2>
 		<form th:action="@{/board/write}" th:object="${boardDTO}" method="post" class="form_write">
 
- 			<input type="hidden" name="boardEmail" th:value="${session.sessionEmail}">
+ 			<!-- <input type="hidden" name="boardEmail" th:value="${session.sessionEmail}"> -->
  			<table class="tbl_write">
 				<tbody>
 					<!-- th:field="*{boardTitle} name 속성 역할도 하고 제목을 유지시키는 기능도 함 -->
@@ -40,7 +40,7 @@
 					<div class="other_writeBtn">
 						<a th:href="@{/main}"><button
 								class="btn_home" type="button">Home</button></a> 
-						<a th:href="@{/board/list}"><button
+						<a th:href="@{/board/pagelist}"><button
 								class="btn_home" type="button">List</button></a>
 						<input class="write_cancel_btn" type="reset" value="Cancel">
 					</div>
@@ -48,7 +48,7 @@
 		</form>
 	</div>
 </body>
-<script>
+<!-- <script>
     var remainTitle = document.querySelectorAll('.danger_title');
     remainTitle.forEach(function(element) {
         if (element.innerHTML.trim() === "내용은 필수 항목입니다") {
@@ -62,5 +62,5 @@
         	element.innerHTML="";
         }
     });
-</script>
+</script> -->
 </html>

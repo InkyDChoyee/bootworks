@@ -186,6 +186,14 @@ a:hover, button:hover {
   	box-shadow: 2px 2px 7px #ee7;
 }
 
+.pagination {
+	margin: 30px auto;
+}
+
+.pagination a {
+	padding: 4px;
+}
+
 .tbl_list th {
 	border-bottom: 1px solid #ff9;
 	border-radius: 5px;
