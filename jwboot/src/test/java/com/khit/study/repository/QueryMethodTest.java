@@ -77,7 +77,7 @@ public class QueryMethodTest {
 	@Test 
 	public void testFindByTitleContaining() {
 		// 0 = 1page
-		Pageable paging = PageRequest.of(1, 5, Sort.by(Sort.Direction.DESC, "id"));
+		Pageable paging = PageRequest.of(1, 5, Sort.Direction.DESC, "id");
 		log.info("page: " + paging.getPageNumber());
 		log.info("size: " + paging.getPageSize());
 		// findByTitle() 호출
