@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khit.board.dto.BoardDTO;
 import com.khit.board.service.BoardService;
@@ -61,8 +62,21 @@ public class BoardController {
 	// /board/pagelist?page=0
 	// /board/pagelist
 	@GetMapping("/pagelist")
-	public String getPageList(@PageableDefault(page = 1) Pageable pageable , Model model) {
-		Page<BoardDTO> boardDTOList = boardService.findListAll(pageable);
+	public String getPageList(@PageableDefault(page = 1) Pageable pageable,
+								// (value="keyword", required = false) = 검색어가 없어도 페이지 표시
+							  @RequestParam(value="type", required = false) String type,
+							  @RequestParam(value="keyword", required = false) String keyword,
+							  Model model) {
+		// 검색어가 없으면 페이지처리만 하고, 검색어가 있으면 검색으로 페이지 처리
+		Page<BoardDTO> boardDTOList = null;
+		if(keyword == null) {
+			boardDTOList = boardService.findListAll(pageable);
+			
+		}else if (type != null && type.equals("title")){
+			boardDTOList = boardService.findByBoardTitleContaining(keyword, pageable);
+		}else if (type != null && type.equals("content")){
+			boardDTOList = boardService.findByBoardContentContaining(keyword, pageable);
+		}
 		
 		// 하단의 페이지 블럭 만들기
 		int blockLimit = 10; // 하단에 보여줄 페이지 개수
@@ -72,6 +86,8 @@ public class BoardController {
 		int endPage = (startPage+blockLimit-1) > boardDTOList.getTotalPages()
 					  ? boardDTOList.getTotalPages() : startPage+blockLimit-1;
 		
+		model.addAttribute("kw", keyword);   // 검색어 보내기
+		model.addAttribute("type", type);   // 검색 유형 보내기
 		model.addAttribute("boardList", boardDTOList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);

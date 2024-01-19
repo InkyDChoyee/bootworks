@@ -286,6 +286,25 @@ a:hover, button:hover {
 	box-shadow: inset 2px 2px 5px #a44;
 }
 
+.frm_search {
+	width: 700px;
+	margin: 16px auto;
+	display:flex;
+	justify-content: flex-end;
+}
+
+select {
+	text-align: center;
+}
+
+.frm_search input {
+	padding: 4px;
+}
+
+.frm_search input[type="text"] {
+	width: 200px;
+}
+
 .fs_detail {
 	padding-top: 20px;
 	border-radius: 10px;

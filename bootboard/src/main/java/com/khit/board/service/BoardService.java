@@ -101,4 +101,55 @@ public class BoardService {
 		return boardDTOList;
 		
 	}
+
+	//public Page<BoardDTO> findListAll(Pageable pageable)에서 String keyword가 추가 된 것
+	public Page<BoardDTO> findByBoardTitleContaining(String keyword, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;  // db가 1 작음
+		int pageSize = 10;
+		
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findByBoardTitleContaining(keyword,pageable);
+		
+		log.info("" + boardList.isFirst());  // 속성으로 나가면 .first로 작동함
+		log.info("" + boardList.isLast());  // 속성으로 나가면 .last로 작동함
+		log.info("" + boardList.getNumber());  // 현재 페이지
+		
+		// 생성자 방식으로 boardDTOList를 만들어 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board -> new BoardDTO(
+				board.getId(),
+				board.getBoardTitle(),
+				board.getBoardWriter(),
+				board.getBoardContent(),
+				board.getBoardHits(),
+				board.getCreatedDate(),
+				board.getUpdatedDate()));
+		
+		return boardDTOList;
+	}
+
+	public Page<BoardDTO> findByBoardContentContaining(String keyword, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;  // db가 1 작음
+		int pageSize = 10;
+		
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findByBoardContentContaining(keyword,pageable);
+		
+		log.info("" + boardList.isFirst());  // 속성으로 나가면 .first로 작동함
+		log.info("" + boardList.isLast());  // 속성으로 나가면 .last로 작동함
+		log.info("" + boardList.getNumber());  // 현재 페이지
+		
+		// 생성자 방식으로 boardDTOList를 만들어 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board -> new BoardDTO(
+				board.getId(),
+				board.getBoardTitle(),
+				board.getBoardWriter(),
+				board.getBoardContent(),
+				board.getBoardHits(),
+				board.getCreatedDate(),
+				board.getUpdatedDate()));
+		
+		return boardDTOList;
+	}
 }

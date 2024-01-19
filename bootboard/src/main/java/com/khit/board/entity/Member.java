@@ -22,8 +22,6 @@ import lombok.NoArgsConstructor;
 public class Member {
 	@Id  // PK(기본키)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column
 	private Long id;
 	@Column(unique = true)   // 유일성 가짐, 중복검사
 	private String memberEmail;

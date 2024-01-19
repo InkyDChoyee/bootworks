@@ -7,7 +7,17 @@
 </head>
 <body>
 	<div id="container">
-		<h2 class="h2">Board</h2>
+		<a th:href="@{/board/pagelist}"><h2 class="h2">Board</h2></a>
+		<!-- 검색 영역 -->
+		<form class="frm_search" th:action="@{/board/pagelist}" method="get">  <!-- 자기 자신에게 보내줌 -->
+		    <select name="type">
+		    	<option th:value="title" th:text="Title" th:selected="${type =='title'}"></option>
+		    	<option th:value="content" th:text="Content" th:selected="${type=='content'}"></option>
+		    </select>
+		    <input type="text" name="keyword" th:value="${kw}">
+		    <input type="submit" value="Search">
+		</form>
+		<!-- 글 목록 -->
 		<table class="tbl_list">
 			<thead>
 				<tr>
