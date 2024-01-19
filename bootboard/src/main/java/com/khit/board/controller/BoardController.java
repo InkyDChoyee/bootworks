@@ -46,7 +46,7 @@ public class BoardController {
 		
 		// 글쓰기 처리
 		boardService.save(boardDTO);
-		return "redirect:/board/list";
+		return "redirect:/board/pagelist";
 	}
 	
 	// 글 목록
@@ -82,9 +82,12 @@ public class BoardController {
 	
 	// 글 상세보기
 	@GetMapping("/{id}")
-	public String getBoard(@PathVariable Long id, Model model) {
+	public String getBoard(@PathVariable Long id, Model model,
+						@PageableDefault(page = 1) Pageable pageable) {
 		// 조회수
 		boardService.updateHits(id);
+		// 페이지
+		model.addAttribute("page", pageable.getPageNumber());
 		
 		// 글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);

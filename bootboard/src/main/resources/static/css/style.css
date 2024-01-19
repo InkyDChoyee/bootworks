@@ -192,6 +192,14 @@ a:hover, button:hover {
 
 .pagination a {
 	padding: 4px;
+	color: #999;
+}
+
+#current_page {
+	font-size: 1.2rem;
+	font-weight: bold;
+	padding: 4px;
+	text-decoration: underline;
 }
 
 .tbl_list th {

@@ -86,6 +86,7 @@ public class BoardService {
 
 		log.info("" + boardList.isFirst());  // 속성으로 나가면 .first로 작동함
 		log.info("" + boardList.isLast());  // 속성으로 나가면 .last로 작동함
+		log.info("" + boardList.getNumber());  // 현재 페이지
 		
 		// 생성자 방식으로 boardDTOList를 만들어 가져오기
 		Page<BoardDTO> boardDTOList = boardList.map(board -> new BoardDTO(

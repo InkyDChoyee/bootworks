@@ -16,22 +16,17 @@
 					<th>Writer</th>
 					<th>Date</th>
 					<th>Hits</th>
-					<th>Delete</th>
 				</tr>
 			</thead>
 			<tbody>
  				<tr th:each="board: ${boardList}">
 					<td th:text="${board.id}"></td>
-					<td><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></td>
+					<!-- page 클래스의 메서드인 number - getNumber() -->
+					<td><a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}" th:text="${board.boardTitle}"></a></td>
 					<td th:text="${board.boardWriter}"></td>
 					<td th:if="${board.updatedDate != empty}" th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:ss')} + ' (updated)'"></td>
 					<td th:unless="${board.updatedDate != empty}" th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')} + ' (created)'"></td>
 					<td th:text="${board.boardHits}"></td>
-					<td>
-						<!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
-						<a th:if="${session.sessionName == board.boardWriter}" th:href="@{|/board/delete/${board.id}|}" class="delete"
-						onclick="return confirm('해당 게시글을 삭제하시겠습니까?')">Delete</a>
-					</td>
 				</tr>
 			</tbody>
 		</table>
@@ -44,7 +39,11 @@
 			<span th:each="page: ${#numbers.sequence(startPage,endPage)}">
 				<!-- <span th:text="${page}"></span> -->
 				<!-- /pagelist?page=1 -->
-				<a th:href="@{/board/pagelist(page=${page})}" th:text="${page}"></a>
+				<!-- 현재 페이지는 링크없이숫자만 표시 -->
+				<span id="current_page" th:if="${page == boardList.number + 1}" th:text="${page}"></span>
+				<span th:if="${page != boardList.number + 1}" >
+					<a th:href="@{/board/pagelist(page=${page})}" th:text="${page}"></a>
+				</span>
 			</span>
 			<!-- 다음 페이지 -->
 			<a th:href="${boardList.last}? '#' : @{/board/pagelist(page=${boardList.number+2})}">Next</a>
