@@ -562,6 +562,10 @@ select {
 	justify-content: space-around;
 }
 
+.tbl_write tbody td img {
+	width: 500px;
+}
+
 /* update style */
 .other_updateBtn {
 	display: flex;

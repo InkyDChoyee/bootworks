@@ -9,7 +9,8 @@
 <body>
 	<div id="container">
 		<h2>Write</h2>
-		<form th:action="@{/board/write}" th:object="${boardDTO}" method="post" class="form_write">
+		<form th:action="@{/board/write}" th:object="${boardDTO}" method="post" 
+			enctype="multipart/form-data" class="form_write">
 
  			<!-- <input type="hidden" name="boardEmail" th:value="${session.sessionEmail}"> -->
  			<table class="tbl_write">
@@ -25,6 +26,9 @@
 					<tr>
 						<td><input type="text" name="boardWriter"
 							th:value="${session.sessionName}" readonly></td>
+					</tr>
+					<tr>
+						<td><input type="file" name="boardFile"></td>
 					</tr>
 					<tr>
 						<td><textarea rows="5" cols="50" th:field="*{boardContent}"

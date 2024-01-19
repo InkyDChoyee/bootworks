@@ -1,5 +1,6 @@
 package com.khit.board.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.board.dto.BoardDTO;
 import com.khit.board.service.BoardService;
@@ -38,7 +40,9 @@ public class BoardController {
 	
 	// 글쓰기 처리
 	@PostMapping("/write")
-	public String write(@Valid BoardDTO boardDTO, BindingResult bindingResult) {
+	public String write(@Valid BoardDTO boardDTO, 
+						MultipartFile boardFile,
+						BindingResult bindingResult) throws IOException, Exception {
 		// 에러 처리
 		if(bindingResult.hasErrors()) {
 			log.info("has errors......");
@@ -46,7 +50,7 @@ public class BoardController {
 		}
 		
 		// 글쓰기 처리
-		boardService.save(boardDTO);
+		boardService.save(boardDTO, boardFile);
 		return "redirect:/board/pagelist";
 	}
 	

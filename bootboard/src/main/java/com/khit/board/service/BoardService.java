@@ -1,8 +1,11 @@
 package com.khit.board.service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +13,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
@@ -26,7 +30,26 @@ public class BoardService {
 	
 	private final BoardRepository boardRepository;
 
-	public void save(BoardDTO boardDTO) {
+	public void save(BoardDTO boardDTO, MultipartFile boardFile) throws Exception, IOException {
+		// 1. 파일 저장 -> 서버
+		if(!boardFile.isEmpty()) {  // 전달 된 파일이 있으면
+			// 저장 경로 (1. server에 만드는 방법, 2. 하드디스크에 만드는 방법)
+			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+			UUID uuid = UUID.randomUUID();  // 무작위 아이디 생성 = 중복파일의 이름 방지
+			String filename = uuid + "_" + boardFile.getOriginalFilename();  // 원본 파일
+			
+			// File 클래스 객체 생성
+			File savedFile = new File(filepath, filename);   // upload 폴더에 저장
+			boardFile.transferTo(savedFile);
+		
+			// 2. 파일 이름 저장 -> DB
+			boardDTO.setFilename(filename);
+			boardDTO.setFilepath("/upload/" + filename); // 파일 경로 설정
+		}
+		
+		
+		
+		
 		//dto -> entity 변환 메서드 필요
 		Board board = Board.toSaveEntity(boardDTO);
 		// entity를 db에 저장
@@ -90,16 +113,17 @@ public class BoardService {
 		
 		// 생성자 방식으로 boardDTOList를 만들어 가져오기
 		Page<BoardDTO> boardDTOList = boardList.map(board -> new BoardDTO(
-																	board.getId(),
-																	board.getBoardTitle(),
-																	board.getBoardWriter(),
-																	board.getBoardContent(),
-																	board.getBoardHits(),
-																	board.getCreatedDate(),
-																	board.getUpdatedDate()));
-		
+															board.getId(),
+															board.getBoardTitle(),
+															board.getBoardWriter(),
+															board.getBoardContent(),
+															board.getBoardHits(),
+															board.getFilename(),
+															board.getFilepath(),
+															board.getCreatedDate(),
+															board.getUpdatedDate()));
+
 		return boardDTOList;
-		
 	}
 
 	//public Page<BoardDTO> findListAll(Pageable pageable)에서 String keyword가 추가 된 것
@@ -122,6 +146,8 @@ public class BoardService {
 				board.getBoardWriter(),
 				board.getBoardContent(),
 				board.getBoardHits(),
+				board.getFilename(),
+				board.getFilepath(),
 				board.getCreatedDate(),
 				board.getUpdatedDate()));
 		
@@ -147,6 +173,8 @@ public class BoardService {
 				board.getBoardWriter(),
 				board.getBoardContent(),
 				board.getBoardHits(),
+				board.getFilename(),
+				board.getFilepath(),
 				board.getCreatedDate(),
 				board.getUpdatedDate()));
 		
