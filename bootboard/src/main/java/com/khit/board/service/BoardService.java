@@ -93,9 +93,29 @@ public class BoardService {
 		boardRepository.deleteById(id);
 	}
 
-	public void update(BoardDTO boardDTO) {
+	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception, IOException {
 		// save() = 삽입(id가 없는 경우), 수정(id가 있는 경우)로 나뉨
-		Board board= Board.toUpdateEntity(boardDTO);
+		Board board = null;
+		// 1. 파일 저장 -> 서버
+		if(!boardFile.isEmpty()) {  // 전달 된 파일이 있으면
+			// 저장 경로 (1. server에 만드는 방법, 2. 하드디스크에 만드는 방법)
+			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+			UUID uuid = UUID.randomUUID();  // 무작위 아이디 생성 = 중복파일의 이름 방지
+			String filename = uuid + "_" + boardFile.getOriginalFilename();  // 원본 파일
+			
+			// File 클래스 객체 생성
+			File savedFile = new File(filepath, filename);   // upload 폴더에 저장
+			boardFile.transferTo(savedFile);
+		
+			// 2. 파일 이름 저장 -> DB
+			boardDTO.setFilename(filename);
+			boardDTO.setFilepath("/upload/" + filename); // 파일 경로 설정
+		}else {
+			// 수정할 파일이 없으면 게시글 번호 경로만 보여줌
+			boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
+		}
+		// dto->entity
+		board = Board.toUpdateEntity(boardDTO);
 		boardRepository.save(board);
 	}
 

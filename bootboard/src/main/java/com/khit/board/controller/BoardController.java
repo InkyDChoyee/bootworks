@@ -119,7 +119,7 @@ public class BoardController {
 	@GetMapping("/delete/{id}")
 	public String deleteBoard(@PathVariable Long id) {
 		boardService.deleteById(id);
-		return "redirect:/board/list";
+		return "redirect:/board/pagelist";
 	}
 	
 	// 글 수정하기
@@ -133,9 +133,10 @@ public class BoardController {
 	
 	// 글 수정 처리
 	@PostMapping("/update/{id}")
-	public String update(@ModelAttribute BoardDTO boardDTO) {
+	public String update(@ModelAttribute BoardDTO boardDTO, 
+			MultipartFile boardFile ) throws IOException, Exception  {
 		// 수정후에 글 상세보기로 이동
-		boardService.update(boardDTO);
+		boardService.update(boardDTO, boardFile);
 		return "redirect:/board/" + boardDTO.getId();
 	}
 }

@@ -26,7 +26,6 @@
     <fullyQualifiedTypeName name="lombok.AllArgsConstructor"/>
     <fullyQualifiedTypeName name="ch.qos.logback.core.model.Model"/>
     <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeEach"/>
     <fullyQualifiedTypeName name="com.khit.study.entity.Board"/>
     <fullyQualifiedTypeName name="java.sql.Timestamp"/>
@@ -50,4 +49,8 @@
     <fullyQualifiedTypeName name="com.khit.board.dto.BoardDTO"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
     <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
+    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+    <fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+    <fullyQualifiedTypeName name="java.util.UUID"/>
 </qualifiedTypeNameHistroy>
