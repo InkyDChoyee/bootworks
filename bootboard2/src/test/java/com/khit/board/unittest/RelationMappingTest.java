@@ -58,23 +58,61 @@ public class RelationMappingTest {
 //			Board board = new Board();
 //			board.setTitle("member2가 등록한 글제목 " + i);
 //			board.setContent("member2가 등록한 글내용 " + i);
-//			board.setMember(member1);
+//			board.setMember(member2);
 //			board.setCreatedDate(new Timestamp(System.currentTimeMillis()));
 //			
 //			boardRepository.save(board);
 //		}
 //	}
 
-	@Test
-	public void testSelectAll() {
+//	@Test
+//	public void testSelectAll() {
 		// 회원 목록
-		List<Member> memberList = memberRepository.findAll();
-		for(Member member : memberList) {
-			log.info(member.toString());
-		}
+//		List<Member> memberList = memberRepository.findAll();
+//		for(Member member : memberList) {
+//			log.info(member.toString());
+//		}
+		
+		// 게시글 목록
+//		List<Board> boardList = boardRepository.findAll();
+//		for(Board board : boardList) {
+//			log.info(board.toString());
+//		}t
+		// 람다식으로 출력
+//		boardList.forEach(board -> log.info(board.toString()));	
+//	}
+	
+	// 게시글 상세 조회
+//	@Test
+//	public void testSelectOne() {
+//		// 4번 게시글 조회 - findById(4)
+//		Board board = boardRepository.findById(4).get();
+//		log.info(board.getId() + "번 게시글 정보");
+//		log.info("제목: "+board.getTitle());
+//		log.info("내용: "+board.getContent());
+//		log.info("작성자: "+board.getMember().getName());
+//		log.info("권한: "+board.getMember().getRole());
+//		log.info("게시일: "+board.getCreatedDate());
+//	}
+	
+	// 특정 회원이 게시한 글 조회
+//	@Test
+//	public void testSelect() {
+//		// 뽀로로가 쓴 게시글 조회
+//		Member member = memberRepository.findByMemberId("member1");
+//		log.info(member.getName()+"가 작성한 게시글 목록");
+//		List<Board> boardList = member.getBoardList();
+//		for(Board board : boardList) {
+//			log.info(board.toString());
+//		}
+//	}
+	
+	// 특정 회원 삭제
+	@Test
+	public void testDelete() {
+		memberRepository.deleteById(2);
+		
 	}
-	
-	
 	
 }	
 
