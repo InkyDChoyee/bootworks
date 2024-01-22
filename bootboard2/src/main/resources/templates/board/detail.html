@@ -24,7 +24,7 @@
 					<td>
 						<div class="board_info">
 							<p th:text="'writer: ' + ${board.member.name}"></p>
-							<!-- <p th:text="'date: ' + ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')} + ' (created)'"></p> -->
+							<p th:text="'date: ' + ${#dates.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')} + ' (created)'"></p>
 						</div>
 					</td>
 				</tr>

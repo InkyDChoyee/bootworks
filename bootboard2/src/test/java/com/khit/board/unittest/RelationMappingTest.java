@@ -2,6 +2,7 @@ package com.khit.board.unittest;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -99,9 +100,9 @@ public class RelationMappingTest {
 //	@Test
 //	public void testSelect() {
 //		// 뽀로로가 쓴 게시글 조회
-//		Member member = memberRepository.findByMemberId("member1");
-//		log.info(member.getName()+"가 작성한 게시글 목록");
-//		List<Board> boardList = member.getBoardList();
+//		Optional<Member> member = memberRepository.findByMemberId("member1");
+//		log.info(member.get().getName()+"가 작성한 게시글 목록");
+//		List<Board> boardList = member.get().getBoardList();
 //		for(Board board : boardList) {
 //			log.info(board.toString());
 //		}
