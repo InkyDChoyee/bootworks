@@ -1,6 +1,7 @@
 package com.khit.board.unittest;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,9 @@ import com.khit.board.entity.Member;
 import com.khit.board.repository.BoardRepository;
 import com.khit.board.repository.MemberRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @SpringBootTest
 public class RelationMappingTest {
 	// sql 기본 제공 - MemberRepositoy - save(), findById() ...
@@ -61,6 +65,16 @@ public class RelationMappingTest {
 //		}
 //	}
 
+	@Test
+	public void testSelectAll() {
+		// 회원 목록
+		List<Member> memberList = memberRepository.findAll();
+		for(Member member : memberList) {
+			log.info(member.toString());
+		}
+	}
+	
+	
 	
 }	
 

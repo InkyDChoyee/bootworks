@@ -15,7 +15,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@ToString
+@ToString(exclude="boardList")  // 순환참조 방지
 @Setter
 @Getter
 @Entity
@@ -40,5 +40,5 @@ public class Member {
 	// Board와 관계 매핑
 	// 주인 설정 = 다쪽(board)이 주인
 	@OneToMany(mappedBy="member", fetch = FetchType.EAGER)
-	private List<Board> boarList = new ArrayList<>();     
+	private List<Board> boardList = new ArrayList<>();     
 }
