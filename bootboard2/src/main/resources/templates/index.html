@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>INDEX</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<h1>안녕하세요 게시판 프로젝트입니다</h1>
+	<div id="container">
+		<h2 class="h2">안녕하세요 게시판 프로젝트입니다</h2>
+		<!-- static 설정 불필요 -> 절대 경로로 가져옴 -->
+		<div class="main_img">
+			<img class="index_img" th:src="@{/img/newyear.jpg}" alt="newyear">
+		</div>
+		<div class="menu">
+			<a th:href="@{/member/login}"><button class="idx_btn_login">Login</button></a>
+			<a th:href="@{/board/list}"><button class="idx_btn_list">Board</button></a>
+		</div>
+	</div>
 </body>
 </html>
