@@ -22,18 +22,18 @@ public class MemberController {
 		return "/member/login";
 	}
 	
-	@PostMapping("/member/login")
-	private String login(@ModelAttribute Member member, HttpSession session) {
-		Member loginMember = memberService.login(member);
-		// MemberService = 아이디 조회 / MemberController = 비밀번호 조회
-		if(loginMember != null && loginMember.getPassword().equals(member.getPassword())) {
-			// 아이디 비밀번호 이리치해서 로그인 되면 세션 발급
-			session.setAttribute("sessionMemberId", loginMember.getMemberId());
-			return "main";
-		}else {
-			return "/member/login";
-		}
-	}
+//	@PostMapping("/member/login")
+//	private String login(@ModelAttribute Member member, HttpSession session) {
+//		Member loginMember = memberService.login(member);
+//		// MemberService = 아이디 조회 / MemberController = 비밀번호 조회
+//		if(loginMember != null && loginMember.getPassword().equals(member.getPassword())) {
+//			// 아이디 비밀번호 이리치해서 로그인 되면 세션 발급
+//			session.setAttribute("sessionMemberId", loginMember.getMemberId());
+//			return "main";
+//		}else {
+//			return "/member/login";
+//		}
+//	}
 	
 	// 메인 페이지
 	@GetMapping("/main")
