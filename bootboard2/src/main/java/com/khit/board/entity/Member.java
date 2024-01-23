@@ -46,5 +46,5 @@ public class Member {
 	// cascade: 참조된 객체가 삭제되면 참조하는 객체도 삭제됨
 	@OneToMany(mappedBy="member", fetch = FetchType.EAGER, 
 			cascade = CascadeType.ALL)
-	private List<Board> boardList = new ArrayList<>();     
+	private List<Board> boardList = new ArrayList<>();
 }

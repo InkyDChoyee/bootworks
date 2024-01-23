@@ -1,15 +1,17 @@
 <!DOCTYPE html>
 <!-- thymeleaf 주입 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" >
 <head>
 <meta charset="UTF-8">
-<title>INDEX</title>
+<title>MAIN</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div id="container">
-		<h2 th:text="${session.sessionMemberId} + '님 환영합니다'"></h2>
-		<!-- static 설정 불필요 -> 절대 경로로 가져옴 -->
+		<div sec:authorize="isAuthenticated()" class="auth">
+			<h3 sec:authentication="principal.member.name"></h3>
+		</div>
 		<div class="main_img">
 			<img class="index_img" th:src="@{/img/newyear.jpg}" alt="newyear">
 		</div>
