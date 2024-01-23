@@ -11,6 +11,7 @@
 	<div id="container">
 		<div sec:authorize="isAuthenticated()" class="auth">
 			<h3 sec:authentication="principal.member.name"></h3>
+			<p th:text="${#authentication.getPrincipal()}"></p>
 		</div>
 		<div class="main_img">
 			<img class="index_img" th:src="@{/img/newyear.jpg}" alt="newyear">
