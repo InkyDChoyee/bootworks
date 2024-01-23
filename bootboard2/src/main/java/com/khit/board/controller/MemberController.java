@@ -35,9 +35,17 @@ public class MemberController {
 		}
 	}
 	
+	// 메인 페이지
 	@GetMapping("/main")
 	public String main() {
 		return "main";
+	}
+	
+	// 로그아웃
+	// 회원 로그아웃
+	@GetMapping("/member/logout")
+	public String logout() {
+		return "redirect:/";
 	}
 	
 	
