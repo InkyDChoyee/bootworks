@@ -7,6 +7,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
 		<h2>Content</h2>
 		<table class="tbl_write">
@@ -45,5 +46,6 @@
 			</div>
 		</div>
 	</div>
+	<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 </body>
 </html>

@@ -1,56 +1,58 @@
 <!DOCTYPE html>
 <!-- thymeleaf 주입 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>WRITE</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
-		<h2>Write</h2>
-		<form th:action="@{/board/write}" th:object="${boardDTO}" method="post" 
-			enctype="multipart/form-data" class="form_write">
-
- 			<!-- <input type="hidden" name="boardEmail" th:value="${session.sessionEmail}"> -->
- 			<table class="tbl_write">
-				<tbody>
-					<!-- th:field="*{boardTitle} name 속성 역할도 하고 제목을 유지시키는 기능도 함 -->
-					<tr>
-						<td><input type="text" th:field="*{boardTitle}" placeholder="title">
-				 			<div th:if="${#fields.hasAnyErrors()}" class="any_danger">
-			 					<div th:each="err:${#fields.allErrors()}" th:text="${err}" class="danger_title"></div>
-			 				</div>
-						</td>
-					</tr>
-					<tr>
-						<td><input type="text" name="boardWriter"
-							th:value="${session.sessionName}" readonly></td>
-					</tr>
-					<tr>
-						<td><input type="file" name="boardFile"></td>
-					</tr>
-					<tr>
-						<td><textarea rows="5" cols="50" th:field="*{boardContent}"
-								placeholder="content"></textarea>
-								 			<div th:if="${#fields.hasAnyErrors()}" class="any_danger">
- 				<div th:each="err:${#fields.allErrors()}" th:text="${err}" class="danger_content"></div>
- 			</div></td>
-					</tr>
-				</tbody>
-			</table>
-			<div class="writeBtn">
-					<input class="write_btn" type="submit" value="Write"> 
-					<div class="other_writeBtn">
-						<a th:href="@{/main}"><button
-								class="btn_home" type="button">Home</button></a> 
-						<a th:href="@{/board/pagelist}"><button
-								class="btn_home" type="button">List</button></a>
-						<input class="write_cancel_btn" type="reset" value="Cancel">
-					</div>
-			</div>
-		</form>
+		<section id="write">
+			<h2>Write</h2>
+			<form th:action="@{/board/write}" method="post" 
+				enctype="multipart/form-data" class="form_write">
+ 
+	 			<table class="tbl_write">
+					<tbody>
+						<tr>
+							<td>
+								<input type="text" nema="title" placeholder="title">
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div sec:authorize="isAuthenticated()">
+								    <span sec:authentication="principal.member.name"></span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><input type="file" name="boardFile"></td>
+						</tr>
+						<tr>
+							<td><textarea rows="5" cols="50" name="content"
+									placeholder="content"></textarea>
+	 		 				</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="writeBtn">
+						<input class="write_btn" type="submit" value="Write"> 
+						<div class="other_writeBtn">
+							<a th:href="@{/main}"><button
+									class="btn_home" type="button">Home</button></a> 
+							<a th:href="@{/board/pagelist}"><button
+									class="btn_home" type="button">List</button></a>
+							<input class="write_cancel_btn" type="reset" value="Cancel">
+						</div>
+				</div>
+			</form>
+		</section>
 	</div>
+	<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 </body>
 <!-- <script>
     var remainTitle = document.querySelectorAll('.danger_title');

@@ -8,24 +8,17 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
 		<div sec:authorize="isAuthenticated()" class="auth">
 			<h3 sec:authentication="principal.member.name"></h3>
-			<p th:text="${#authentication.getPrincipal()}"></p>
+			<!-- <p th:text="${#authentication.getPrincipal()}"></p> -->
 		</div>
 		<div class="main_img">
 			<img class="index_img" th:src="@{/img/newyear.jpg}" alt="newyear">
 		</div>
-		<div class="menu">
-			<a th:href="@{/member/update}"><button class="idx_btn_join">Update</button></a>
-			<a th:href="@{/member/logout}"><button class="idx_btn_login" onclick="logout()">Logout</button></a>
-			<a th:href="@{/member/list}"><button class="idx_btn_list">Member</button></a>
-		</div>
-		<div class="menu">
-			<a th:href="@{/board/write}"><button class="idx_btn_join">Write</button></a>
-			<a th:href="@{/board/list}"><button class="idx_btn_list">Board</button></a>
-		</div>
 	</div>
+<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 <script>
 	const logout = function(){
 		alert("로그아웃 되었습니다");

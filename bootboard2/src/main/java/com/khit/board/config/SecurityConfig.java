@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -24,10 +25,18 @@ public class SecurityConfig {
 		
 		http.authorizeHttpRequests(authorize -> authorize
 														// 로그인이 필요없음
-														.requestMatchers("/", "/css/**", "/img/**", "/member/**", "/auth/main").permitAll()
+														.requestMatchers("/", "/css/**", "/img/**", "/member/**", "/auth/main"
+																, "/board/**").permitAll()
 														// 로그인이 필요함
 														.anyRequest().authenticated()
-								   ).formLogin(form -> form.loginPage("/member/login"));
+								   ).formLogin(form -> form.loginPage("/member/login")
+								                           .defaultSuccessUrl("/")
+								   );
+		http.logout().logoutUrl("/member/logout")
+					 .logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+					 .invalidateHttpSession(true)
+		             .logoutSuccessUrl("/");
+		
 		return http.build();
 	}
 	

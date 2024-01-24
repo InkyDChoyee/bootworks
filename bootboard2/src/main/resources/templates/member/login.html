@@ -6,36 +6,40 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+	<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
-		<h2 class="h2">Login</h2>
-		<form th:action="@{/member/login}" method="post" class="form_login">
-			<fieldset class="fs_login">
-				<ul>
-					<li>
-						<label for="username">ID</label>
-						<input type="text" name="username" id="username"
-						       placeholder="ID">
-					</li>
-					<li>
-						<label for="password">Password</label>
-						<input type="password" name="password" id="password"
-						       placeholder="password">
-					</li>
-					<li>
-						<span th:text="${error}" class="error"></span>
-					</li>
-				</ul>
-			</fieldset>
-			<div class="loginBtn">
-				<div class="login_btn">
-					<input type="submit" value="Login"> 
+		<section id="login">
+			<h2 class="h2">Login</h2>
+			<form th:action="@{/member/login}" method="post" class="form_login">
+				<fieldset class="fs_login">
+					<ul>
+						<li>
+							<label for="username">ID</label>
+							<input type="text" name="username" id="username"
+							       placeholder="ID">
+						</li>
+						<li>
+							<label for="password">Password</label>
+							<input type="password" name="password" id="password"
+							       placeholder="password">
+						</li>
+						<li>
+							<span th:text="${error}" class="error"></span>
+						</li>
+					</ul>
+				</fieldset>
+				<div class="loginBtn">
+					<div class="login_btn">
+						<input type="submit" value="Login"> 
+					</div>
+					<div class="login_other_btn">
+						<a th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+						<input type="reset" value="Cancel"> 
+					</div>
 				</div>
-				<div class="login_other_btn">
-					<a th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
-					<input type="reset" value="Cancel"> 
-				</div>
-			</div>
-		</form>
+			</form>
+		</section>
 	</div>
+	<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 </body>
 </html>

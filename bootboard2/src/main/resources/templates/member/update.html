@@ -6,18 +6,17 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
+	
 		<h2 class="h2">Update</h2>
 		<div class="detail">
 			<form th:action="@{/member/update}" method="post">
+				<input type="hidden" readonly name="id" id="id" th:value="${member.id}">
 				<fieldset class="fs_detail">
 					<ul>
-						<li><label for="id">NO</label> <input type="text" readonly
-							name="id" id="id" th:value="${member.id}"></li>
 						<li><label for="memberId">ID</label> <input type="text" readonly
 							name="memberId" id="memberId" th:value="${member.memberId}"></li>
-						<li><label for="password">Password</label> <input type="text"
-							name="password" id="password" th:value="${member.password}"></li>
 						<li><label for="name">Name</label> <input type="text" 
 							name="name" id="name"  th:value="${member.name}"></li>
 						<li><label for="role">Role</label> <input type="text" readonly
@@ -34,5 +33,6 @@
 			</form>
 		</div>
 	</div>
+	<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 </body>
 </html>

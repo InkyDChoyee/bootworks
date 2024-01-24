@@ -34,4 +34,9 @@ public class BoardController {
 		model.addAttribute("board", board);
 		return "/board/detail";   // detail.html
 	}
+	
+	@GetMapping("/write")
+	public String writeForm() {
+		return "/board/write";
+	}
 }

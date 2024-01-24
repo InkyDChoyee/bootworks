@@ -3,6 +3,7 @@ package com.khit.board.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.khit.board.config.SecurityUser;
 import com.khit.board.entity.Member;
 import com.khit.board.service.MemberService;
 
@@ -90,10 +92,11 @@ public class MemberController {
 	}
 	
 	// 회원 수정
-	@GetMapping("/member/update/{id}")
-	public String updateForm(@PathVariable("id") Integer id, Model model) {
+	// @AuthenticationPrincipal = 회원을 인가하는 클래스
+	@GetMapping("/member/update")
+	public String updateForm(@AuthenticationPrincipal SecurityUser principal, Model model) {
 		
-		Member member = memberService.findById(id);
+		Member member = memberService.findByMemberId(principal);
 		model.addAttribute("member", member);
 		return "/member/update";
 	}

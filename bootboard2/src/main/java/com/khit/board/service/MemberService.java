@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.khit.board.config.SecurityUser;
 import com.khit.board.entity.Member;
 import com.khit.board.entity.Role;
 import com.khit.board.exception.BootBoardException;
@@ -59,7 +60,19 @@ public class MemberService {
 		memberRepository.deleteById(id);
 	}
 
+//	public void update(Member member) {
+//		memberRepository.save(member);
+//	}
+
+	public Member findByMemberId(SecurityUser principal) {
+		Optional<Member> Member = memberRepository.findByMemberId(principal.getUsername());
+		return Member.get();
+	}
+	
 	public void update(Member member) {
+		String encPw = pwEncoder.encode(member.getPassword());
+		member.setPassword(encPw);
+		member.setRole(Role.ADMIN);
 		memberRepository.save(member);
 	}
 }

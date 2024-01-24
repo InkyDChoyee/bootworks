@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6" >
+<header th:fragment="header-fragment">
+	<div id="logo">
+		<h1><a th:href="@{/}">Khit</a></h1>
+	</div>
+	<nav>
+		<!-- 로그인 전 -->
+		<!-- 딱히 쓸 태그가 없는 경우 <th:block>사용 -->
+		<th:block sec:authorize="isAnonymous()">
+			<ul id="topMenu">
+				<li>
+					<a th:href="@{/member/login}">Login</a>
+				</li>
+				<li>
+					<a th:href="@{/member/join}">Join</a>
+				</li>
+				<li>
+					<a th:href="@{/member/list}">Member</a>
+				</li>
+				<li>
+					<a th:href="@{/board/list}">Board</a>
+				</li>
+			</ul>
+		</th:block>	
+		<!-- 로그인 후 -->
+		<th:block sec:authorize="isAuthenticated()">
+			<ul id="topMenu">
+				<li>
+					
+					<a th:href="@{/member/logout}">Logout</a>
+				</li>
+				<li>
+					<a th:href="@{/member/update}">[<span sec:authentication="principal.member.name"></span>]님의 Page</a>
+				</li>
+				<li>
+					<a th:href="@{/member/list}">Member</a>
+				</li>
+				<li>
+					<a th:href="@{/board/list}">Board</a>
+				</li>
+			</ul>
+		</th:block>	
+	</nav>
+</header>
+</html>

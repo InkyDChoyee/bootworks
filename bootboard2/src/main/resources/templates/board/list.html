@@ -6,6 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
 		<h2 class="h2">Board</h2>
 		<table class="tbl_list">
@@ -33,9 +34,9 @@
 		<!-- 버튼 영역 -->
 		<div class="listBtn">
 			<a th:href="@{/board/write}"><button class="idx_btn_join">Write</button></a>
-			<a th:if="${session.sessionMemberId}" th:href="@{/main}"><button class="btn_home" type="button">Home</button></a>
-			<a th:unless="${session.sessionMemberId}" th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
+			<a th:href="@{/}"><button class="btn_home" type="button">Home</button></a>
 		</div>
 	</div>
+	<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 </body>
 </html>

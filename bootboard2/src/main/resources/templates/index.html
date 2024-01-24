@@ -6,21 +6,17 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
-		<h2 class="h2">안녕하세요 게시판 프로젝트입니다</h2>
-		<!-- static 설정 불필요 -> 절대 경로로 가져옴 -->
-		<div class="main_img">
-			<img class="index_img" th:src="@{/img/newyear.jpg}" alt="newyear">
-		</div>
-		<div class="menu">
-			<a th:href="@{/main}"><button class="idx_btn_login">Main</button></a>
-			<a th:href="@{/member/join}"><button class="idx_btn_join">Join</button></a>
-			<a th:href="@{/member/list}"><button class="idx_btn_list">Member</button></a>
-			<a th:href="@{/auth/main}"><button class="idx_btn_login">Security</button></a>
-		</div>
-		<div class="menu">
-			<a th:href="@{/board/list}"><button class="idx_btn_list">Board</button></a>
-		</div>
+		<section id="main">
+			<h2 class="h2">안녕하세요 게시판 프로젝트입니다</h2>
+			<!-- static 설정 불필요 -> 절대 경로로 가져옴 -->
+			<div class="main_img">
+				<img class="index_img" th:src="@{/img/newyear.jpg}" alt="newyear">
+			</div>
+		</section>
 	</div>
+	<!-- footer.html 연결 -->
+<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 </body>
 </html>

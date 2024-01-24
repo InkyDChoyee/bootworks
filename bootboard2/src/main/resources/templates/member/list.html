@@ -6,6 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
 	<div id="container">
 		<h2 class="h2">List</h2>
 		<table class="tbl_list">
@@ -25,7 +26,7 @@
 					<td th:text="${member.memberId}"></td>
 					<td th:text="${member.name}"></td>
 					<td th:text="${member.role}"></td>
-					<td><a th:text="view" th:href="@{|/member/${member.id}|}"></a></td>
+					<td><a th:text="detail" th:href="@{|/member/${member.id}|}"></a></td>
 					<td><a th:text="delete" th:href="@{|/member/delete/${member.id}|}" onClick="return confirm('해당 회원을 삭제하시겠습니까?')"></a></td>
 <!-- 					<td>
 						버티컬바(|)는 ${member.i d}를 숫자로 유지시켜줌
@@ -43,5 +44,6 @@
 			<a th:unless="${session.sessionEmail}" th:href="@{/}"><button class="btn_home" type="button">Home</button></a> -->
 		</div>
 	</div>
+	<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
 </body>
 </html>
