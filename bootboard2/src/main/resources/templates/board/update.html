@@ -12,9 +12,6 @@
 		<form th:action="@{|/board/update/${board.id}|}" method="post"
 		enctype="multipart/form-data">
 			<input type="hidden" name="id" th:value="${board.id}">
-<!-- 			<input type="hidden" name="boardHits" th:value="${board.boardHits}">
-			<input type="hidden" name="boardWriter" th:value="${board.boardWriter}"> -->
-			<!-- <input type="hidden" name="boardEmail" th:value="${member.memberEmail}"> -->
 			<table class="tbl_write">
 				<tbody>
 					<tr>
@@ -25,14 +22,6 @@
 					<tr>
 						<td><textarea rows="5" cols="50" name="content"
 								th:text="${board.content}"></textarea></td>
-					</tr>
-					<tr>
-						<td>
-							<!-- <div class="board_info">
-								<p th:text="'writer: ' + ${board.boardWriter}"></p>
-								<p th:text="'date: ' + ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
-							</div> -->
-						</td>
 					</tr>
 				</tbody>
 			</table>

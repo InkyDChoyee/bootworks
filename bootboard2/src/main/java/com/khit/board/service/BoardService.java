@@ -32,4 +32,9 @@ public class BoardService {
 		boardRepository.deleteById(id);
 	}
 
+	public void update(Board board) {
+		boardRepository.save(board);
+		
+	}
+
 }

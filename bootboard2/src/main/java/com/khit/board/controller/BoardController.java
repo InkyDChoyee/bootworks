@@ -57,4 +57,21 @@ public class BoardController {
 		boardService.deleteById(id);
 		return "redirect:/board/list";
 	}
+	
+	// 게시글 수정 페이지 요청
+	@GetMapping("/update/{id}")
+	public String updateFrom(@PathVariable Integer id, Model model) {
+		Board board = boardService.findById(id);
+		model.addAttribute("board", board);
+		return "/board/update";
+	}
+	
+	// 게시글 수정 처리
+	@PostMapping("/update/{id}")
+	public String update(@ModelAttribute Board board,
+			@AuthenticationPrincipal SecurityUser principal) {
+		board.setMember(principal.getMember());
+		boardService.update(board);
+		return "redirect:/board/" + board.getId();
+	}
 }
