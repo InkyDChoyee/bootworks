@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- thymeleaf 주입 -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>CONTENT</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div id="container">
+		<h2>Content</h2>
+		<form th:action="@{|/board/update/${board.id}|}" method="post"
+		enctype="multipart/form-data">
+			<input type="hidden" name="id" th:value="${board.id}">
+<!-- 			<input type="hidden" name="boardHits" th:value="${board.boardHits}">
+			<input type="hidden" name="boardWriter" th:value="${board.boardWriter}"> -->
+			<!-- <input type="hidden" name="boardEmail" th:value="${member.memberEmail}"> -->
+			<table class="tbl_write">
+				<tbody>
+					<tr>
+						<td><input type="text" name="title" 
+							th:value="${board.title}" autofocus>
+						</td>
+					</tr>
+					<tr>
+						<td><textarea rows="5" cols="50" name="content"
+								th:text="${board.content}"></textarea></td>
+					</tr>
+					<tr>
+						<td>
+							<!-- <div class="board_info">
+								<p th:text="'writer: ' + ${board.boardWriter}"></p>
+								<p th:text="'date: ' + ${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></p>
+							</div> -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="writeBtn">
+				<input class="write_btn" type="submit" value="Update" onclick="confirm('수정 되었습니다')">
+				<div class="other_updateBtn">
+					<input class="write_cancel_btn" type="reset" value="Reset">
+					<a th:href="@{|/board/${board.id}|}"><button
+							class="write_cancel_btn" type="button">goBack</button></a>
+					<a th:href="@{/main}"><button class="btn_home" type="button">Home</button></a>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

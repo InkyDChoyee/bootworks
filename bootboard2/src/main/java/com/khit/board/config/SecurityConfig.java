@@ -25,9 +25,10 @@ public class SecurityConfig {
 		
 		http.authorizeHttpRequests(authorize -> authorize
 														// 로그인이 필요없음
-														.requestMatchers("/", "/css/**", "/img/**", "/member/**", "/auth/main"
-																, "/board/**").permitAll()
+														.requestMatchers("/", "/css/**", "/img/**", "/js/**").permitAll()
 														// 로그인이 필요함
+														.requestMatchers("/board/write").authenticated()
+														.requestMatchers("/member/**", "/board/**").permitAll()
 														.anyRequest().authenticated()
 								   ).formLogin(form -> form.loginPage("/member/login")
 								                           .defaultSuccessUrl("/")

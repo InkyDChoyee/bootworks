@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <!-- thymeleaf 주입 -->
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>CONTENT</title>
@@ -34,11 +35,15 @@
 		<div class="writeBtn">
 			<!-- <input class="write_btn" type="submit" value="Write">  -->
 			<div class="other_writeBtn">
-<!-- 				<a th:if="${session.sessionName == board.boardWriter}"
-					th:href="@{|/board/delete/${board.id}|}">
-					<button class="write_cancel_btn"
-						onclick="return confirm('해당 게시글을 삭제하시겠습니까?')">Delete</button>
-				</a> -->
+				<th:block sec:autocapitalize="isAuthenticated()">
+						 <!--  th:if="${authentication.getPrincipal.getUsername()} == ${board.member.memberId}"> -->
+					<a th:href="@{|/board/update/${board.id}|}">
+					    <button class="write_cancel_btn" type="button">Update</button></a>
+					<a th:href="@{|/board/delete/${board.id}|}">
+						<button class="write_cancel_btn" type="button"
+							    onclick="return confirm('해당 게시글을 삭제하시겠습니까?')">Delete</button>
+					</a>
+				</th:block>
 				<!-- Pageable 크래스의 page -> getPageNumber() -->
 				<a th:href="@{/board/list}"><button
 						class="write_cancel_btn" type="button">List</button></a>
