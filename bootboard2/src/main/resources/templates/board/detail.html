@@ -35,8 +35,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 		<div class="writeBtn">
 			<!-- <input class="write_btn" type="submit" value="Write">  -->
 			<div class="other_writeBtn">
-				<th:block sec:autocapitalize="isAuthenticated()">
-						 <!--  th:if="${authentication.getPrincipal.getUsername()} == ${board.member.memberId}"> -->
+				<th:block sec:autocapitalize="isAuthenticated()"
+						 th:if="${#authentication.getPrincipal.getUsername()} == ${board.member.memberId}">
 					<a th:href="@{|/board/update/${board.id}|}">
 					    <button class="write_cancel_btn" type="button">Update</button></a>
 					<a th:href="@{|/board/delete/${board.id}|}">
