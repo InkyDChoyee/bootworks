@@ -40,8 +40,8 @@ public class UserController {
 	@GetMapping("/user/{id}")
 	@ResponseBody
 	public User getUser(@PathVariable Integer id) {
-		User user = service.findById(id);
-		return user;
+		// 검색된 회원이 없을 경우 예외 반환
+		return service.findById(id);
 	}
 	
 	
