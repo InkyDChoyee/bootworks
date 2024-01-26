@@ -570,6 +570,11 @@ select {
 	width: 500px;
 }
 
+.reply-insert #replyContent {
+	width: 700px;
+	resize: none;
+}
+
 /* update style */
 .other_updateBtn {
 	display: flex;
