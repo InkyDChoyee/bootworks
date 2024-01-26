@@ -109,11 +109,11 @@ public class RelationMappingTest {
 //	}
 	
 	// 특정 회원 삭제
-	@Test
-	public void testDelete() {
-		memberRepository.deleteById(2);
-		
-	}
+//	@Test
+//	public void testDelete() {
+//		memberRepository.deleteById(2);
+//		
+//	}
 	
 }	
 

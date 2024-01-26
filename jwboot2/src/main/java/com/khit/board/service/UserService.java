@@ -1,7 +1,7 @@
 package com.khit.board.service;
 
 import java.util.List;
-import java.util.function.Supplier;
+//import java.util.function.Supplier;
 
 import org.springframework.stereotype.Service;
 
@@ -41,5 +41,13 @@ public class UserService {
 //		});
 //		
 //		return getUser;
+	}
+
+	public void update(User user) {
+		repository.save(user);
+	}
+
+	public void deleteById(Integer id) {
+		repository.deleteById(id);
 	}
 }
