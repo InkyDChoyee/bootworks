@@ -1,9 +1,6 @@
 package com.khit.board.entity;
 
-import java.sql.Timestamp;
 import java.util.List;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -36,9 +33,6 @@ public class Board extends BaseEntity{
 	
 	@Column(length = 2000, nullable = false)
 	private String content;
-	
-	@CreationTimestamp 
-	private Timestamp createdDate;
 	
 	// Board 엔티티와 연관관계 매핑
 	// 다대일 매핑 (fetch = 조회할 때 -> EAGER = 전체조회를 함 / LAZY = 특정한 조회만 함)

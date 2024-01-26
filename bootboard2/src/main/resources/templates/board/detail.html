@@ -4,6 +4,8 @@
 xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+<meta name="_csrf" th:content="${_csrf.token}">
 <title>CONTENT</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <script
@@ -40,7 +42,21 @@ crossorigin="anonymous"></script>
 		
 		
 		<!-- 댓글 목록 -->
-		
+		<div class="reply">
+			<div class="reply_div" th:each="reply:${board.replyList}">
+				<p class="reply_list_content" th:text="${reply.content}">
+				</p>
+						<span class="reply_writer" th:text="'작성자: '+ ${reply.member.name} + '(작성일: ' + ${reply.createdDate} + ')'"></span>
+				<th:block sec:autocapitalize="isAuthenticated()"
+						 th:if="${#authentication.getPrincipal.getUsername()} == ${board.member.memberId}">
+					<div class="reply_update">
+						<p><a th:href="'#'">수정</a> | 
+						<!-- 자바스크립트에서 자료형 값을 유지 해야 할 경우 = [[자료]] 의 형식으로 쓴다 -->
+						<a th:href="'#'" th:onClick="replyObject.deleteReply([[${board.id}]], [[${reply.id}]])">삭제</a></p>
+					</div>
+				</th:block>
+			</div>
+		</div>
 		
 		<!-- 댓글 등록 -->
 		<div class="reply-insert">
@@ -50,6 +66,8 @@ crossorigin="anonymous"></script>
 			</p>
 			<button id="btn-save-reply">댓글 등록</button>
 		</div>
+		
+		
 		
 		<div class="writeBtn">
 			<!-- <input class="write_btn" type="submit" value="Write">  -->
