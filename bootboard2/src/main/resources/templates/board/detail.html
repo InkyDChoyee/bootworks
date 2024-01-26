@@ -6,6 +6,10 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <meta charset="UTF-8">
 <title>CONTENT</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
+<script
+src="https://code.jquery.com/jquery-3.7.1.js"
+integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+crossorigin="anonymous"></script>
 </head>
 <body>
 <header th:replace="~{layout/header :: header-fragment}" ></header>
@@ -40,6 +44,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 		
 		<!-- 댓글 등록 -->
 		<div class="reply-insert">
+			<input type="hidden" id="boardId" th:value="${board.id}">
 			<p>
 				<textarea id="replyContent" rows="3" cols="95" placeholder="댓글을 남겨주세요"></textarea>
 			</p>
@@ -66,5 +71,6 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 		</div>
 	</div>
 	<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
+<script src="../js/reply.js"></script>
 </body>
 </html>
