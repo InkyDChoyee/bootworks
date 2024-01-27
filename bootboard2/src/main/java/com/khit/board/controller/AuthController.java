@@ -12,4 +12,11 @@ public class AuthController {
 		return "/auth/main";    // main.html
 	}
 	
+	// 권한 에러 페이지
+	@GetMapping("/auth/accessDenied")
+	public String authError() {
+		return "/auth/accessDenied";
+	}
+	
+	
 }

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>INDEX</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+ <script
+src="https://code.jquery.com/jquery-3.7.1.js"
+integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+crossorigin="anonymous"></script>
+<body>
+<header th:replace="~{layout/header :: header-fragment}" ></header>
+	<div id="container">
+		<section id="main">
+			<h1>권한이 없습니다. 다른 메뉴를 사용해주세요</h1>
+		</section>
+	</div>
+	<!-- footer.html 연결 -->
+<footer th:replace="~{layout/footer :: footer-fragment}"></footer>
+<script src="../js/weather.js"></script>
+</body>
+</html>

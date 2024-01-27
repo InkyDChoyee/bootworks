@@ -17,13 +17,14 @@
 					<a th:href="@{/member/join}">Join</a>
 				</li>
 				<li>
-					<a th:href="@{/member/list}">Member</a>
+					<a th:href="@{/goods/list}">Product</a>
 				</li>
 				<li>
 					<a th:href="@{/board/list}">Board</a>
 				</li>
 			</ul>
 		</th:block>	
+		
 		<!-- 로그인 후 -->
 		<th:block sec:authorize="isAuthenticated()">
 			<ul id="topMenu">
@@ -33,6 +34,9 @@
 				</li>
 				<li>
 					<a th:href="@{/member/update}">[<span sec:authentication="principal.member.name"></span>]님의 Page</a>
+				</li>
+				<li>
+					<a th:href="@{/goods/list}">Product</a>
 				</li>
 				<li>
 					<a th:href="@{/member/list}">Member</a>
