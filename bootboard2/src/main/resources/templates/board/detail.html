@@ -47,8 +47,9 @@ crossorigin="anonymous"></script>
 				<p class="reply_list_content" th:text="${reply.content}">
 				</p>
 						<span class="reply_writer" th:text="'작성자: '+ ${reply.member.name} + '(작성일: ' + ${reply.createdDate} + ')'"></span>
-				<th:block sec:autocapitalize="isAuthenticated()"
-						 th:if="${#authentication.getPrincipal.getUsername()} == ${board.member.memberId}">
+       		  	   <th:block sec:authorize="isAuthenticated()"
+       		  	         th:if="${#authentication.getPrincipal.getUsername()}==
+       		  	                 ${board.member.memberId}">
 					<div class="reply_update">
 						<p><a th:href="'#'">수정</a> | 
 						<!-- 자바스크립트에서 자료형 값을 유지 해야 할 경우 = [[자료]] 의 형식으로 쓴다 -->
@@ -72,8 +73,9 @@ crossorigin="anonymous"></script>
 		<div class="writeBtn">
 			<!-- <input class="write_btn" type="submit" value="Write">  -->
 			<div class="other_writeBtn">
-				<th:block sec:autocapitalize="isAuthenticated()"
-						 th:if="${#authentication.getPrincipal.getUsername()} == ${board.member.memberId}">
+       		  	   <th:block sec:authorize="isAuthenticated()"
+       		  	         th:if="${#authentication.getPrincipal.getUsername()}==
+       		  	                 ${board.member.memberId}">
 					<a th:href="@{|/board/update/${board.id}|}">
 					    <button class="write_cancel_btn" type="button">Update</button></a>
 					<a th:href="@{|/board/delete/${board.id}|}">

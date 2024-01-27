@@ -1,5 +1,6 @@
 package com.khit.board.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -7,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.khit.board.config.SecurityUser;
+import com.khit.board.dto.MemberDTO;
 import com.khit.board.entity.Member;
 import com.khit.board.entity.Role;
 import com.khit.board.exception.BootBoardException;
@@ -34,17 +36,30 @@ public class MemberService {
 		
 	}
 
-	public void save(Member member) {
+	public void save(MemberDTO memberDTO) {
 		// 1. 비밀번호 암호화
 		// 2. 권한 설정
-		String encPw = pwEncoder.encode(member.getPassword());
-		member.setPassword(encPw);
-		member.setRole(Role.MEMBER);
+		String encPw = pwEncoder.encode(memberDTO.getPassword());
+		memberDTO.setPassword(encPw);
+		memberDTO.setRole(Role.MEMBER);
+		// dto -> entity 변환 메서드 필요
+		Member member = Member.toSaveEntity(memberDTO);
 		memberRepository.save(member);
 	}
 
-	public List<Member> findAll() {
-		return memberRepository.findAll();
+	public List<MemberDTO> findAll() {
+		// db에서 entity(memberList)를 가져옴
+		List<Member> memberList = memberRepository.findAll();
+		
+		// memberDTOList를 생성
+		List<MemberDTO> memberDTOList = new ArrayList<>();
+		
+		// memberDTOList에 memberDTO를 저장함
+		for(Member member : memberList) {
+			MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
+			memberDTOList.add(memberDTO);
+		}
+		return memberDTOList;
 	}
 
 	public Member findById(Integer id) {

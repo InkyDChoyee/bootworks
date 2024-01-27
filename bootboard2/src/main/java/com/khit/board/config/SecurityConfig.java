@@ -24,10 +24,10 @@ public class SecurityConfig {
 		http.userDetailsService(customService);
 		
 		http.authorizeHttpRequests(authorize -> authorize
-														.requestMatchers("/", "/css/**", "/img/**", "/js/**").permitAll()
+														.requestMatchers("/", "/css/**", "/img/**", "/js/**", "/board/**").permitAll()
 														.requestMatchers("/board/write").authenticated()
-														.requestMatchers("/member/list").hasAnyAuthority("ADMIN")
-														.requestMatchers("/member/**", "/board/**").permitAll()
+														.requestMatchers("/member/list").hasAnyAuthority("ADMIN")  // 위치 중요
+														.requestMatchers("/member/**").permitAll()
 														.anyRequest().authenticated()
 								   ).formLogin(form -> form.loginPage("/member/login")
 								                           .defaultSuccessUrl("/")

@@ -7,7 +7,7 @@ let replyObject = {
 		})
 	},
 	insertReply: () => {
-		alert("댓글 등록 요청됨");
+		// alert("댓글 등록 요청됨");
 		// boardId 가져오기
 		let boardId = $("#boardId").val();
 		// document.getElementById(replyContent).value
