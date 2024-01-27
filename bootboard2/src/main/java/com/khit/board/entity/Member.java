@@ -56,14 +56,14 @@ public class Member extends BaseEntity{
 	private List<Board> boardList = new ArrayList<>();
 	
 	@OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-	private List<Reply> repluList;
+	private List<Reply> replyList;
 	
 	
 
 	// dto(view에 온 입력값) => entity(db에 저장_
 	// 회원 가입, 회원 수정
 	public static Member toSaveEntity(MemberDTO memberDTO) {
-		Member member = Member.builder().id(memberDTO.getId())
+		Member member = Member.builder()  // id가 없음 자동
 										.memberId(memberDTO.getMemberId())
 										.password(memberDTO.getPassword())
 										.name(memberDTO.getName())
@@ -71,6 +71,16 @@ public class Member extends BaseEntity{
 										.build();
 		return member;
 	}
-
+	
+	public static Member toUpdateEntity(MemberDTO memberDTO) {
+		Member member = Member.builder()
+				.id(memberDTO.getId())
+				.memberId(memberDTO.getMemberId())
+				.password(memberDTO.getPassword())
+				.name(memberDTO.getName())
+				.role(memberDTO.getRole())
+				.build();
+		return member;
+	}
 
 }

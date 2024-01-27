@@ -16,6 +16,7 @@
 					<th>ID</th>
 					<th>Name</th>
 					<th>Role</th>
+					<th>Date</th>
 					<th>View</th>
 					<th>Del</th>
 				</tr>
@@ -26,6 +27,7 @@
 					<td th:text="${member.memberId}"></td>
 					<td th:text="${member.name}"></td>
 					<td th:text="${member.role}"></td>
+					<td th:text="${#dates.format(member.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
 					<td><a th:text="detail" th:href="@{|/member/${member.id}|}"></a></td>
 					<td><a th:text="delete" th:href="@{|/member/delete/${member.id}|}" onClick="return confirm('해당 회원을 삭제하시겠습니까?')"></a></td>
 <!-- 					<td>

@@ -48,7 +48,7 @@ public class MemberService {
 	}
 
 	public List<MemberDTO> findAll() {
-		// db에서 entity(memberList)를 가져옴
+		// db에서 entity(mefindmberList)를 가져옴
 		List<Member> memberList = memberRepository.findAll();
 		
 		// memberDTOList를 생성
@@ -92,7 +92,7 @@ public class MemberService {
 		memberDTO.setPassword(encPw);
 		memberDTO.setRole(Role.MEMBER);
 		// 변환 필요
-		Member member = Member.toSaveEntity(memberDTO);
+		Member member = Member.toUpdateEntity(memberDTO);
 		memberRepository.save(member);
 	}
 }

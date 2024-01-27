@@ -139,6 +139,13 @@ a:hover, button:hover {
 	border-radius: 5px;
 	box-shadow: 2px 2px 5px #77d;
 }
+
+.join_error {
+	color: #f99;
+	font-size: 0.8rem;
+}
+
+
 #other_btn_reset {
 	background: #fff;
 	padding: 4px;

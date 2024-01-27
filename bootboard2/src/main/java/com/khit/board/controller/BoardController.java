@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khit.board.config.SecurityUser;
+import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
 import com.khit.board.service.BoardService;
 
@@ -26,16 +27,16 @@ public class BoardController {
 	
 	@GetMapping("/list")
 	public String getList(Model model) {
-		List<Board> boardList = boardService.findAll();
-		model.addAttribute("boardList", boardList);
+		List<BoardDTO> boardDTOList = boardService.findAll();
+		model.addAttribute("boardList", boardDTOList);
 		return "/board/list";  // list.html
 	}
 	
 	// 게시글 상세 보기
 	@GetMapping("/{id}")
 	public String getBoard(@PathVariable Integer id, Model model) {  // @PathVariable = API 주소 방식
-		Board board = boardService.findById(id);
-		model.addAttribute("board", board);
+		BoardDTO boardDTO = boardService.findById(id);
+		model.addAttribute("board", boardDTO);
 		return "/board/detail";   // detail.html
 	}
 	
@@ -61,17 +62,17 @@ public class BoardController {
 	// 게시글 수정 페이지 요청
 	@GetMapping("/update/{id}")
 	public String updateFrom(@PathVariable Integer id, Model model) {
-		Board board = boardService.findById(id);
-		model.addAttribute("board", board);
+		BoardDTO boardDTO = boardService.findById(id);
+		model.addAttribute("board", boardDTO);
 		return "/board/update";
 	}
 	
 	// 게시글 수정 처리
 	@PostMapping("/update/{id}")
-	public String update(@ModelAttribute Board board,
+	public String update(@ModelAttribute BoardDTO boardDTO,
 			@AuthenticationPrincipal SecurityUser principal) {
-		board.setMember(principal.getMember());
-		boardService.update(board);
-		return "redirect:/board/" + board.getId();
+		boardDTO.setMember(principal.getMember());
+		boardService.update(boardDTO);
+		return "redirect:/board/" + boardDTO.getId();
 	}
 }
