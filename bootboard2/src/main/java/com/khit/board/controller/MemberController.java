@@ -80,8 +80,8 @@ public class MemberController {
 	// 회원 상세 보기
 	@GetMapping("member/{id}")
 	public String getMember(@PathVariable("id") Integer id, Model model) {
-		Member member = memberService.findById(id);
-		model.addAttribute("member", member);
+		MemberDTO memberDTO = memberService.findById(id);
+		model.addAttribute("member", memberDTO);
 		return "/member/detail";
 	} 
 	
@@ -95,17 +95,17 @@ public class MemberController {
 	// 회원 수정
 	// @AuthenticationPrincipal = 회원을 인가하는 클래스
 	@GetMapping("/member/update")
-	public String updateForm(@AuthenticationPrincipal SecurityUser principal, Model model) {
+	public String updateMemberForm(@AuthenticationPrincipal SecurityUser principal, Model model) {
 		
-		Member member = memberService.findByMemberId(principal);
-		model.addAttribute("member", member);
+		MemberDTO memberDTO = memberService.findByMemberId(principal);
+		model.addAttribute("member", memberDTO);
 		return "/member/update";
 	}
 	
 	// 회원 수정 처리
 	@PostMapping("/member/update")
-	public String update(@ModelAttribute Member member) {
-		memberService.update(member);
-		return "redirect:/member/" + member.getId();
+	public String update(@ModelAttribute MemberDTO memberDTO) {
+		memberService.update(memberDTO);
+		return "redirect:/member/" + memberDTO.getId();
 	}
 }

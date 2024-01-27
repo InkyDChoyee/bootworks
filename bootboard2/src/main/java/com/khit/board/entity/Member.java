@@ -54,6 +54,11 @@ public class Member extends BaseEntity{
 	// cascade: 참조된 객체가 삭제되면 참조하는 객체도 삭제됨
 	@OneToMany(mappedBy="member", cascade = CascadeType.ALL)
 	private List<Board> boardList = new ArrayList<>();
+	
+	@OneToMany(mappedBy="member", cascade = CascadeType.ALL)
+	private List<Reply> repluList;
+	
+	
 
 	// dto(view에 온 입력값) => entity(db에 저장_
 	// 회원 가입, 회원 수정

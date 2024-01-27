@@ -62,10 +62,12 @@ public class MemberService {
 		return memberDTOList;
 	}
 
-	public Member findById(Integer id) {
+	public MemberDTO findById(Integer id) {
+		// member entity db에서 꺼내옴
 		Optional<Member> findMember = memberRepository.findById(id);
 		if(findMember.isPresent()) {
-			return findMember.get();
+			MemberDTO memberDTO = MemberDTO.toSaveDTO(findMember.get());
+			return memberDTO;
 		}else {
 			throw new BootBoardException("페이지를 찾을 수 없습니다");
 		}
@@ -79,15 +81,18 @@ public class MemberService {
 //		memberRepository.save(member);
 //	}
 
-	public Member findByMemberId(SecurityUser principal) {
-		Optional<Member> Member = memberRepository.findByMemberId(principal.getUsername());
-		return Member.get();
+	public MemberDTO findByMemberId(SecurityUser principal) {
+		Optional<Member> member = memberRepository.findByMemberId(principal.getUsername());
+		MemberDTO memberDTO = MemberDTO.toSaveDTO(member.get());
+		return memberDTO;
 	}
 	
-	public void update(Member member) {
-		String encPw = pwEncoder.encode(member.getPassword());
-		member.setPassword(encPw);
-		member.setRole(Role.ADMIN);
+	public void update(MemberDTO memberDTO) {
+		String encPw = pwEncoder.encode(memberDTO.getPassword());
+		memberDTO.setPassword(encPw);
+		memberDTO.setRole(Role.MEMBER);
+		// 변환 필요
+		Member member = Member.toSaveEntity(memberDTO);
 		memberRepository.save(member);
 	}
 }
